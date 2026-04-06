@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>papeleria _ve| Suministros de Oficina al Mayor – Barquisimeto</title>
+  <meta name="description" content="Suministros de oficina al mayor en Barquisimeto. Precios de importador, delivery gratuito y atención personalizada. Contacta por WhatsApp ahora." />
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '26525302807089880');
+fbq('track','lead')
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & TOKENS ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:        #281D88;
+      --brand-light:  #3828c0;
+      --brand-dark:   #1a1260;
+      --brand-glow:   rgba(40, 29, 136, 0.35);
+      --white:        #FFFFFF;
+      --off-white:    #F4F5FB;
+      --wa:           #25D366;
+      --wa-dark:      #1aab54;
+      --text-muted:   rgba(255,255,255,0.65);
+      --radius-lg:    20px;
+      --radius-xl:    32px;
+      --shadow-blue:  0 20px 60px rgba(40,29,136,0.45);
+      --font-head:    'Sora', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--brand-dark);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── ANIMATED GRID BACKGROUND ──────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -40%;
+      left: -20%;
+      width: 80vw;
+      height: 80vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56,40,192,0.25) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: orb 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes orb {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(15vw, 10vh) scale(1.15); }
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section { padding: 60px 0; }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(26, 18, 96, 0.88);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 0;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* Logo mark */
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg { width: 100%; height: 100%; }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text span:first-child {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.3px;
+      color: var(--white);
+    }
+
+    .logo-text span:last-child {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      padding: 72px 0 52px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--wa);
+      box-shadow: 0 0 8px var(--wa);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    h1 {
+      font-family: var(--font-head);
+      font-size: clamp(26px, 7vw, 40px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    h1 .accent {
+      background: linear-gradient(135deg, #7B9FFF, #FFFFFF 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      margin-top: 18px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── VIDEO REEL ─────────────────────────────────────── */
+    .video-section {
+      padding: 0 0 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .reel-wrapper {
+      position: relative;
+      width: min(320px, 88vw);
+      aspect-ratio: 9/16;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: linear-gradient(145deg, #1f176a, #281D88);
+      border: 2px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow-blue), 0 0 0 1px rgba(255,255,255,0.05);
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .reel-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px;
+    }
+
+    /* Placeholder avatar animation */
+    .avatar-circle {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-light), #6B57FF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 12px rgba(107,87,255,0.15);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .avatar-circle svg { width: 44px; height: 44px; fill: white; }
+
+    .reel-label {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    .reel-label strong { color: var(--white); display: block; font-size: 15px; margin-bottom: 4px; }
+
+    /* Instruction for replacing */
+    .reel-hint {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(37,211,102,0.15);
+      border: 1px solid rgba(37,211,102,0.4);
+      color: var(--wa);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 100px;
+    }
+
+    /* Scan lines decorative */
+    .reel-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.03) 3px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* HOW TO: Replace video */
+    .video-replace-tip {
+      margin-top: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      max-width: 280px;
+      line-height: 1.5;
+    }
+
+    /* ─── BENEFITS ───────────────────────────────────────── */
+    .benefits {
+      padding: 56px 0;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .benefits-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .benefit-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
+      cursor: default;
+    }
+
+    .benefit-card:hover {
+      border-color: rgba(107,87,255,0.4);
+      background: rgba(107,87,255,0.07);
+      transform: translateX(4px);
+    }
+
+    .benefit-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      background: linear-gradient(135deg, rgba(40,29,136,0.8), rgba(107,87,255,0.4));
+      border: 1px solid rgba(107,87,255,0.3);
+    }
+
+    .benefit-text h3 {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .benefit-text p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ─── FORM + CTA ─────────────────────────────────────── */
+    .cta-section {
+      padding: 56px 0 72px;
+    }
+
+    .cta-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,211,102,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-card h2 {
+      font-family: var(--font-head);
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.4px;
+      margin-bottom: 10px;
+    }
+
+    .cta-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.55;
+    }
+
+    /* Form */
+    .capture-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .field-group {
+      position: relative;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 7px;
+      text-align: left;
+    }
+
+    .field-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .field-group input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .field-group input:focus {
+      border-color: rgba(107,87,255,0.6);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 0 3px rgba(107,87,255,0.15);
+    }
+
+    /* WhatsApp button */
+    .btn-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      width: 100%;
+      background: linear-gradient(135deg, var(--wa) 0%, #20c25a 100%);
+      color: #fff;
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      padding: 17px 24px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-wa::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .btn-wa:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 14px 40px rgba(37,211,102,0.5);
+      filter: brightness(1.05);
+    }
+
+    .btn-wa:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    .btn-wa svg { flex-shrink: 0; }
+
+    .privacy-note {
+      margin-top: 14px;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.5;
+    }
+
+    .privacy-note a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+
+    /* ─── TRUST BAR ──────────────────────────────────────── */
+    .trust-bar {
+      padding: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+
+    .trust-items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .trust-item svg { opacity: 0.5; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 0;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    footer strong { color: rgba(255,255,255,0.5); }
+
+    /* ─── FLOATING WA BUTTON ─────────────────────────────── */
+    .floating-wa {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      z-index: 200;
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: var(--wa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,0.5);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: waIn 0.8s 1s ease both;
+    }
+
+    @keyframes waIn {
+      from { opacity: 0; transform: scale(0.5) rotate(-15deg); }
+      to   { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 36px rgba(37,211,102,0.65);
+    }
+
+    .floating-wa::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.4);
+      animation: ping 2s ease-in-out infinite;
+    }
+
+    @keyframes ping {
+      0%   { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 400px) {
+      .cta-card { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────── -->
+<header>
+  <div class="wrapper">
+    <div class="header-inner">
+
+      <!-- Logo SVG Mark (reemplaza con tu <img src="logo.png"> si tienes el archivo) -->
+      <div class="logo-mark">
+      <img src="logo.png" height="42"alt="logo">
+      </div>
+
+      <div class="logo-text">
+        <span>Papeeria_ve</span>
+        <span>soluciones en papeleria</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ── HERO ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="wrapper">
+
+    <div class="badge">
+      <div class="badge-dot"></div>
+      Disponible ahora · Barquisimeto &amp; Acarigua
+    </div>
+
+    <h1>
+      Suministros de Oficina<br>
+      <span class="accent">al Mayor en Barquisimeto:</span><br>
+      De la pantalla a tu escritorio<br>en tiempo récord
+    </h1>
+
+    <p class="hero-sub">
+      Importamos directamente para que tu empresa pague menos, reciba más rápido y nunca se quede sin insumos.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ── VIDEO REEL ──────────────────────────────────────── -->
+<div class="video-section">
+  <div class="wrapper" style="display:flex;flex-direction:column;align-items:center;">
+
+    <div class="reel-wrapper">
+      <!--
+        ══════════════════════════════════════════════════
+        INSTRUCCIONES PARA INSERTAR TU VIDEO:
+        1. Sube tu video (MP4 recomendado) junto a este HTML.
+        2. Reemplaza TODO el <div class="reel-inner">...</div>
+           con la siguiente etiqueta:
+
+           <video
+             autoplay muted loop playsinline
+             style="width:100%;height:100%;object-fit:cover;"
+             src="tu-video.mp4">
+           </video>
+
+        También puedes incrustar un iframe de Instagram/YouTube Shorts
+        con width="100%" height="100%" y frameborder="0".
+        ══════════════════════════════════════════════════
+      -->
+      <div class="reel-inner">
+        <div class="avatar-circle">
+          <!-- Icono persona -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+          </svg>
+        </div>
+        <div class="reel-label">
+          <strong>Tu Asesor de IA</strong>
+          Explica nuestros productos,<br>precios y disponibilidad
+        </div>
+      </div>
+      <div class="reel-hint">VIDEO</div>
+    </div>
+
+    <p class="video-replace-tip">
+      ↑ Inserta aquí el video de tu avatar de IA siguiendo las instrucciones en el código fuente.
+    </p>
+
+  </div>
+</div>
+
+
+<!-- ── BENEFITS ────────────────────────────────────────── -->
+<section class="benefits">
+  <div class="wrapper">
+
+    <p class="section-eyebrow">¿Por qué elegirnos?</p>
+
+    <div class="benefits-grid">
+
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <div class="benefit-text">
+          <h3>Precios de Importador</h3>
+          <p>Compramos en volumen directamente del fabricante. Sin intermediarios. El ahorro llega a tu empresa.</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🚚</div>
+        <div class="benefit-text">
+          <h3>Delivery Gratuito</h3>
+          <p>Cubrimos Barquisimeto y Acarigua sin costo adicional. Tu pedido llega a la puerta de tu oficina.</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-text">
+          <h3>Atención Personalizada</h3>
+          <p>Un asesor humano responde tu WhatsApp. Cotizaciones a medida, sin bots genéricos.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CTA + FORM ──────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="wrapper">
+    <div class="cta-card">
+
+      <h2>¿Listo para cotizar?<br>Escríbenos ahora 🚀</h2>
+      <p>Déjanos tu nombre y correo para enviarte el catálogo actualizado y conectarte con un asesor en menos de 5 minutos.</p>
+
+      <!-- Capture form: name + email before WhatsApp redirect -->
+      <div class="capture-form" id="captureForm">
+
+        <div class="field-group">
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej: Carlos Martínez" autocomplete="name" required />
+        </div>
+
+        <div class="field-group">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" placeholder="carlos@empresa.com" autocomplete="email" required />
+        </div>
+
+      </div>
+
+      <!-- Main WhatsApp CTA -->
+      <a href="#" class="btn-wa" id="waBtn" onclick="handleWA(event)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.89 1.02 1.04-3.8-.24-.39A9.95 9.95 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.62.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z" fill="white"/>
+        </svg>
+        Consultar Disponibilidad por WhatsApp
+      </a>
+
+      <p class="privacy-note">
+        🔒 Tus datos son confidenciales. No hacemos spam.<br>
+        Al continuar, aceptas nuestra <a href="#">política de privacidad</a>.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── TRUST BAR ───────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="wrapper">
+    <div class="trust-items">
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        Empresa venezolana registrada
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        Respuesta en &lt; 5 minutos
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+        +500 empresas satisfechas
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── FOOTER ──────────────────────────────────────────── -->
+<footer>
+  <div class="wrapper">
+    <p>© 2025 <strong>PapelCorp Venezuela</strong> · Barquisimeto, Lara · Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+
+<!-- ── FLOATING WA BUTTON ──────────────────────────────── -->
+<a href="#" class="floating-wa" id="floatingWa" title="Escríbenos por WhatsApp" onclick="openWA(event)">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.89 1.02 1.04-3.8-.24-.39A9.95 9.95 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.62.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/>
+  </svg>
+</a>
+
+
+<!-- ── SCRIPTS ──────────────────────────────────────────── -->
+<script>
+  // ══════════════════════════════════════════
+  // CONFIGURACIÓN – edita estos valores
+  // ══════════════════════════════════════════
+  const WA_NUMBER  = '584121522808'; // Número con código de país, sin + ni espacios
+  const WA_MESSAGE = 'Hola! Me interesa cotizar suministros de oficina al mayor. ¿Pueden ayudarme?';
+  // ══════════════════════════════════════════
+
+  function buildWaURL(extra) {
+    const msg = encodeURIComponent(WA_MESSAGE + (extra || ''));
+    return `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  }
+
+  function handleWA(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+
+    if (!nombre) {
+      document.getElementById('nombre').focus();
+      document.getElementById('nombre').style.borderColor = 'rgba(255,80,80,0.7)';
+      setTimeout(() => document.getElementById('nombre').style.borderColor = '', 1800);
+      return;
+    }
+    if (!correo || !/\S+@\S+\.\S+/.test(correo)) {
+      document.getElementById('correo').focus();
+      document.getElementById('correo').style.borderColor = 'rgba(255,80,80,0.7)';
+      setTimeout(() => document.getElementById('correo').style.borderColor = '', 1800);
+      return;
+    }
+
+    // ─── Aquí puedes disparar tu Píxel de Facebook / Google Tag ───
+    // Ejemplo Meta Pixel:
+    // if (typeof fbq !== 'undefined') fbq('track', 'Lead', { name: nombre, email: correo });
+
+    // Opcional: enviar datos a tu backend / sheet
+    // fetch('/api/leads', { method: 'POST', body: JSON.stringify({ nombre, correo }) });
+
+    const extra = ` (${nombre} – ${correo})`;
+    window.open(buildWaURL(extra), '_blank');
+  }
+
+  function openWA(e) {
+    e.preventDefault();
+    window.open(buildWaURL(''), '_blank');
+  }
+
+  // Actualizar href del botón flotante
+  document.getElementById('floatingWa').href = buildWaURL('');
+
+  // Animación de entrada scroll
+  const cards = document.querySelectorAll('.benefit-card, .cta-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity 0.5s ${i * 0.1}s ease, transform 0.5s ${i * 0.1}s ease`;
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
