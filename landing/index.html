@@ -985,7 +985,7 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
   </div>
 
   <!-- PLANTILLA DE PDF FUERA DE PANTALLA (RENDERIZABLE) -->
-  <div style="position: absolute; left: -9999px; top: -9999px;">
+  <div style="position: fixed; left:0; top: 0; opacity:0; pointer-events:none; z-index:-9999;">
     <div id="plantilla-pdf" style="width: 750px; padding: 40px; font-family: Arial, sans-serif; color: #333; background: #ffffff;">
      
       <!-- CABECERA -->
@@ -1172,10 +1172,10 @@ await new Promise(resolve =>setTimeout(resolve,500));
       margin:       0.2,
       filename:     `Cotizacion_${document.getElementById('empresa_rif').value}.pdf`,
       image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, logging: false },
+      html2canvas:  { scale: 2, user CORS:true logging: false },
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
-    html2pdf().set(opt).from(elemento).save();
+     await html2pdf().set(opt).from(elemento).save();
   }
 </script>
 </body>
