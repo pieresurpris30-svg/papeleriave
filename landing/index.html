@@ -1108,7 +1108,7 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
     }
   }
 
-  function generarPDF() {
+ async function generarPDF() {
     const filas = document.querySelectorAll('.fila-producto');
     let subtotalGeneral = 0;
     const itemsSeleccionados = [];
@@ -1165,7 +1165,7 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
     document.getElementById('pdf_subtotal').innerText = `$${subtotalGeneral.toFixed(2)}`;
     document.getElementById('pdf_iva').innerText = `$${iva.toFixed(2)}`;
     document.getElementById('pdf_total').innerText = `$${totalFinal.toFixed(2)}`;
-
+await new Promise(resolve =>setTimeout(resolve,500));
     // Convertir a PDF
     const elemento = document.getElementById('plantilla-pdf');
     const opt = {
@@ -1175,7 +1175,6 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
       html2canvas:  { scale: 2, logging: false },
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
-
     html2pdf().set(opt).from(elemento).save();
   }
 </script>
