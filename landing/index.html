@@ -611,6 +611,8 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
       .cta-card { padding: 30px 20px; }
     }
   </style>
+<!-- Librería html2pdf.js para generación directa de PDF en cliente -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -892,6 +894,302 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
     observer.observe(el);
   });
 </script>
+<!-- ================= SECCIÓN COTIZADOR B2B ================= -->
+<section id="cotizador-b2b" style="max-width: 900px; margin: 40px auto; padding: 20px; font-family: Arial, sans-serif;">
+ 
+  <div style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+    <h2 style="color: #0d233a; margin-top: 0; border-bottom: 2px solid #0066cc; padding-bottom: 10px;">
+      📄 Generador de Cotización Empresarial B2B
+    </h2>
+    <p style="color: #666; font-size: 0.95rem;">
+      Completa los datos de tu empresa, selecciona los insumos requeridos y descarga la cotización formal con validez institucional.
+    </p>
+
+    <!-- FORMULARIO DE DATOS DE LA EMPRESA -->
+    <form id="form-cotizacion" onsubmit="event.preventDefault(); generarPDF();">
+      <h3 style="color: #333; font-size: 1.1rem; margin-top: 20px;">1. Datos de la Empresa / Cliente</h3>
+     
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+        <div>
+          <label style="display:block; font-weight:bold; font-size:0.85rem; margin-bottom:4px;">Razón Social / Nombre:</label>
+          <input type="text" id="empresa_nombre" placeholder="Ej. Inversiones Papelera C.A." required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:bold; font-size:0.85rem; margin-bottom:4px;">RIF / Identificación Fiscal:</label>
+          <input type="text" id="empresa_rif" placeholder="Ej. J-12345678-9" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:bold; font-size:0.85rem; margin-bottom:4px;">Persona de Contacto:</label>
+          <input type="text" id="empresa_contacto" placeholder="Ej. Lic. María Pérez" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:bold; font-size:0.85rem; margin-bottom:4px;">Teléfono:</label>
+          <input type="tel" id="empresa_telefono" placeholder="Ej. 0414-1234567" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:bold; font-size:0.85rem; margin-bottom:4px;">Correo Electrónico:</label>
+          <input type="email" id="empresa_correo" placeholder="compras@empresa.com" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="display:block; font-weight:bold; font-size:0.85rem; margin-bottom:4px;">Dirección Fiscal:</label>
+          <input type="text" id="empresa_direccion" placeholder="Ej. Zona Industrial, Barquisimeto" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box;">
+        </div>
+      </div>
+
+      <!-- TABLA SELECCIÓN DE PRODUCTOS -->
+      <h3 style="color: #333; font-size: 1.1rem; margin-top: 25px;">2. Selección de Insumos Corporativos</h3>
+     
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+          <thead>
+            <tr style="background-color: #f1f5f9; text-align: left; font-size: 0.9rem;">
+              <th style="padding: 10px; border-bottom: 2px solid #ddd;">Producto / Insumo</th>
+              <th style="padding: 10px; border-bottom: 2px solid #ddd;">Precio Ref. (USD)</th>
+              <th style="padding: 10px; border-bottom: 2px solid #ddd; width: 100px;">Cantidad</th>
+              <th style="padding: 10px; border-bottom: 2px solid #ddd; text-align: right;">Subtotal ($)</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-productos-body">
+            <!-- Los productos se inyectan dinámicamente con JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- BOTÓN DE GENERACIÓN -->
+      <div style="margin-top: 25px; text-align: right;">
+        <button type="submit" style="background-color: #0066cc; color: white; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.2s;">
+          📥 Descargar Cotización Oficial (PDF)
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- PLANTILLA OCULTA (SE RENDERIZA Y CONVIERTE A PDF) -->
+  <div style="display: none;">
+    <div id="plantilla-pdf" style="width: 700px; padding: 40px; font-family: 'Helvetica', Arial, sans-serif; color: #333; background: #fff;">
+     
+      <!-- CABECERA DE LA COTIZACIÓN -->
+      <table style="width: 100%; border-bottom: 2px solid #0066cc; padding-bottom: 15px; margin-bottom: 20px;">
+        <tr>
+          <td style="vertical-align: top;">
+            <h1 style="margin: 0; color: #0d233a; font-size: 1.8rem; font-weight: bold;">PAPEERIA_VE</h1>
+            <p style="margin: 3px 0; font-size: 0.85rem; color: #555;">Soluciones e Importación Directa en Papelería</p>
+            <p style="margin: 2px 0; font-size: 0.8rem; color: #777;">RIF: J-50000000-0 | Barquisimeto, Venezuela</p>
+            <p style="margin: 2px 0; font-size: 0.8rem; color: #777;">Ventas B2B: ventas@papeleriave.com</p>
+          </td>
+          <td style="vertical-align: top; text-align: right;">
+            <div style="background: #f8fafc; padding: 10px 15px; border-radius: 6px; border: 1px solid #e2e8f0; display: inline-block; text-align: right;">
+              <h3 style="margin: 0; color: #0066cc; font-size: 1.1rem;">COTIZACIÓN B2B</h3>
+              <p style="margin: 4px 0 0 0; font-size: 0.8rem;"><strong>N° Control:</strong> <span id="pdf_num_cotizacion"></span></p>
+              <p style="margin: 2px 0 0 0; font-size: 0.8rem;"><strong>Emisión:</strong> <span id="pdf_fecha_emision"></span></p>
+              <p style="margin: 2px 0 0 0; font-size: 0.8rem; color: #d97706;"><strong>Validez:</strong> 7 días continuos</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <!-- DATOS DEL CLIENTE EN PDF -->
+      <table style="width: 100%; margin-bottom: 25px; background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 0.85rem;">
+        <tr>
+          <td style="width: 50%; vertical-align: top;">
+            <p style="margin: 2px 0;"><strong>Cliente / Razón Social:</strong> <span id="pdf_cliente_nombre"></span></p>
+            <p style="margin: 2px 0;"><strong>RIF:</strong> <span id="pdf_cliente_rif"></span></p>
+            <p style="margin: 2px 0;"><strong>Contacto:</strong> <span id="pdf_cliente_contacto"></span></p>
+          </td>
+          <td style="width: 50%; vertical-align: top;">
+            <p style="margin: 2px 0;"><strong>Teléfono:</strong> <span id="pdf_cliente_telefono"></span></p>
+            <p style="margin: 2px 0;"><strong>Correo:</strong> <span id="pdf_cliente_correo"></span></p>
+            <p style="margin: 2px 0;"><strong>Dirección Fiscal:</strong> <span id="pdf_cliente_direccion"></span></p>
+          </td>
+        </tr>
+      </table>
+
+      <!-- DETALLE DE PRODUCTOS EN PDF -->
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.85rem;">
+        <thead>
+          <tr style="background-color: #0d233a; color: white; text-align: left;">
+            <th style="padding: 8px;">Descripción del Producto / Insumo</th>
+            <th style="padding: 8px; text-align: center;">Cant.</th>
+            <th style="padding: 8px; text-align: right;">P. Unit ($)</th>
+            <th style="padding: 8px; text-align: right;">Total ($)</th>
+          </tr>
+        </thead>
+        <tbody id="pdf_items_body">
+          <!-- Se cargan vía JS -->
+        </tbody>
+      </table>
+
+      <!-- RESUMEN FINANCIERO -->
+      <table style="width: 100%; font-size: 0.9rem; margin-top: 10px;">
+        <tr>
+          <td style="width: 60%; vertical-align: top; font-size: 0.75rem; color: #666; padding-right: 20px;">
+            <p style="margin: 2px 0;"><strong>Términos y Condiciones Comerciales:</strong></p>
+            <ul style="margin: 5px 0; padding-left: 15px;">
+              <li>Precios expresados en USD (Convertibles a Bolívares a la tasa oficial BCV del día de pago).</li>
+              <li>Sujeto a disponibilidad de inventario al confirmar el pedido.</li>
+              <li>Tiempo estimado de entrega: 24 a 48 horas en zona urbana.</li>
+              <li>Forma de pago: Pago Móvil, Transferencia bancaria local, Zelle o USDT (Binance).</li>
+            </ul>
+          </td>
+          <td style="width: 40%; vertical-align: top;">
+            <table style="width: 100%; border-collapse: collapse; background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
+              <tr>
+                <td style="padding: 4px; font-weight: bold;">Subtotal:</td>
+                <td style="padding: 4px; text-align: right;" id="pdf_subtotal">$0.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px; color: #666; font-size: 0.8rem;">I.V.A. (16%):</td>
+                <td style="padding: 4px; text-align: right; color: #666; font-size: 0.8rem;" id="pdf_iva">$0.00</td>
+              </tr>
+              <tr style="border-top: 2px solid #0066cc; font-size: 1rem;">
+                <td style="padding: 6px 4px 0 4px; font-weight: bold; color: #0d233a;">TOTAL GENERAL:</td>
+                <td style="padding: 6px 4px 0 4px; text-align: right; font-weight: bold; color: #0066cc;" id="pdf_total">$0.00</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- PIE DE PÁGINA SERIO -->
+      <div style="margin-top: 35px; border-top: 1px dashed #ccc; padding-top: 15px; text-align: center; font-size: 0.75rem; color: #888;">
+        <p style="margin: 0;">Para formalizar esta cotización o coordinar el despacho, comuníquese con el departamento de ventas vía WhatsApp o enviando un correo con el N° de Cotización.</p>
+        <p style="margin: 3px 0 0 0;"><em>Gracias por confiar en Papeeria_ve como su aliado comercial de insumos.</em></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT DE FUNCIONALIDAD B2B -->
+<script>
+  // Productos de alta rotación para oficinas (Precios de referencia B2B Venezuela)
+  const productosB2B = [
+    { id: 1, nombre: "Caja de Rollos Térmicos 80x60mm (50 Unidades)", precio: 38.00 },
+    { id: 2, nombre: "Caja de Rollos Térmicos 57x40mm POS (100 Unidades)", precio: 28.00 },
+    { id: 3, nombre: "Bulto de Papel Fotocopia Carta 75g (5 Resmas / 2,500 Hojas)", precio: 24.50 },
+    { id: 4, nombre: "Bulto de Papel Fotocopia Oficio 75g (5 Resmas / 2,500 Hojas)", precio: 27.00 },
+    { id: 5, nombre: "Caja de Lapiceros Negros / Azules (50 Unidades)", precio: 9.50 },
+    { id: 6, nombre: "Cinta de Embalar Transparente 48mm x 100m (Pack 6 Unds)", precio: 11.00 },
+    { id: 7, nombre: "Carpeta de Fibra Marrón Tipo Oficio con Gancho (Caja 50 Unds)", precio: 22.00 }
+  ];
+
+  // Renderizar la tabla de productos en el formulario
+  function cargarProductosFormulario() {
+    const tbody = document.getElementById('tabla-productos-body');
+    tbody.innerHTML = '';
+
+    productosB2B.forEach(prod => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid #edf2f7';
+      tr.innerHTML = `
+        <td style="padding: 10px; font-size: 0.9rem; font-weight: 500;">${prod.nombre}</td>
+        <td style="padding: 10px; font-size: 0.9rem;">$${prod.precio.toFixed(2)}</td>
+        <td style="padding: 10px;">
+          <input type="number" min="0" value="0" id="cant_${prod.id}" onchange="calcularSubtotalRow(${prod.id}, ${prod.precio})" style="width: 70px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; text-align: center;">
+        </td>
+        <td style="padding: 10px; text-align: right; font-weight: bold; font-size: 0.9rem;" id="subtotal_${prod.id}">$0.00</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function calcularSubtotalRow(id, precio) {
+    const cant = parseInt(document.getElementById(`cant_${id}`).value) || 0;
+    const subtotal = cant * precio;
+    document.getElementById(`subtotal_${id}`).innerText = `$${subtotal.toFixed(2)}`;
+  }
+
+  // Generación y descarga del PDF
+  function generarPDF() {
+    // 1. Validar que al menos un producto tenga cantidad > 0
+    let totalItems = 0;
+    let subtotalGeneral = 0;
+    const itemsSeleccionados = [];
+
+    productosB2B.forEach(prod => {
+      const cant = parseInt(document.getElementById(`cant_${prod.id}`).value) || 0;
+      if (cant > 0) {
+        const totalRow = cant * prod.precio;
+        subtotalGeneral += totalRow;
+        totalItems += cant;
+        itemsSeleccionados.push({
+          nombre: prod.nombre,
+          cant: cant,
+          precio: prod.precio,
+          total: totalRow
+        });
+      }
+    });
+
+    if (totalItems === 0) {
+      alert("Por favor selecciona al menos 1 producto con cantidad mayor a 0 para generar la cotización.");
+      return;
+    }
+
+    // 2. Extraer datos del cliente
+    const nombreEmpresa = document.getElementById('empresa_nombre').value;
+    const rif = document.getElementById('empresa_rif').value;
+    const contacto = document.getElementById('empresa_contacto').value;
+    const telefono = document.getElementById('empresa_telefono').value;
+    const correo = document.getElementById('empresa_correo').value;
+    const direccion = document.getElementById('empresa_direccion').value;
+
+    // 3. Poblar la plantilla PDF
+    document.getElementById('pdf_num_cotizacion').innerText = 'COT-' + Math.floor(100000 + Math.random() * 900000);
+   
+    const hoy = new Date();
+    document.getElementById('pdf_fecha_emision').innerText = hoy.toLocaleDateString('es-VE');
+
+    document.getElementById('pdf_cliente_nombre').innerText = nombreEmpresa;
+    document.getElementById('pdf_cliente_rif').innerText = rif;
+    document.getElementById('pdf_cliente_contacto').innerText = contacto;
+    document.getElementById('pdf_cliente_telefono').innerText = telefono;
+    document.getElementById('pdf_cliente_correo').innerText = correo;
+    document.getElementById('pdf_cliente_direccion').innerText = direccion;
+
+    // Llenar tabla del PDF
+    const pdfBody = document.getElementById('pdf_items_body');
+    pdfBody.innerHTML = '';
+
+    itemsSeleccionados.forEach((item, index) => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid #e2e8f0';
+      tr.style.backgroundColor = index % 2 === 0 ? '#ffffff' : '#f8fafc';
+      tr.innerHTML = `
+        <td style="padding: 7px 8px;">${item.nombre}</td>
+        <td style="padding: 7px 8px; text-align: center;">${item.cant}</td>
+        <td style="padding: 7px 8px; text-align: right;">$${item.precio.toFixed(2)}</td>
+        <td style="padding: 7px 8px; text-align: right; font-weight: bold;">$${item.total.toFixed(2)}</td>
+      `;
+      pdfBody.appendChild(tr);
+    });
+
+    // Totales
+    const iva = subtotalGeneral * 0.16;
+    const totalFinal = subtotalGeneral + iva;
+
+    document.getElementById('pdf_subtotal').innerText = `$${subtotalGeneral.toFixed(2)}`;
+    document.getElementById('pdf_iva').innerText = `$${iva.toFixed(2)}`;
+    document.getElementById('pdf_total').innerText = `$${totalFinal.toFixed(2)}`;
+
+    // 4. Renderizar a PDF con html2pdf
+    const elemento = document.getElementById('plantilla-pdf');
+    const opt = {
+      margin:       0.3,
+      filename:     `Cotizacion_PapeleriaVE_${rif}.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(elemento).save();
+  }
+
+  // Inicializar al cargar la página
+  document.addEventListener('DOMContentLoaded', cargarProductosFormulario);
+</script>
+
+ 
 
 </body>
 </html>
