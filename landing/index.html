@@ -610,8 +610,9 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
     @media (max-width: 400px) {
       .cta-card { padding: 30px 20px; }
     }
-
-
+  </style>
+<!-- Librería html2pdf.js para generación directa de PDF en cliente -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -894,99 +895,124 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
   });
 </script>
 <!-- ================= SECCIÓN COTIZADOR B2B EDITABLE ================= -->
-<!-- ======================================================= -->
-<!-- BLOQUE INTEGRAL DEL COTIZADOR: PEGAR COMPLETO EN EL BODY -->
-<!-- ======================================================= -->
-<!-- ======================================================== -->
-<!-- ESTRUCTURA VISUAL Y LÓGICA DE PRECIOS UNIFICADA (AL BODY) -->
-<!-- ======================================================== -->
-    <!-- Este es el botón visual que el cliente presiona en tu pantalla -->
-    <button type="button" class="cotizador-btn" onclick="descargarPresupuestoHTML()">Generar y Descargar Cotización (PDF)</button>
-</div> <!-- Aquí cierra el contenedor principal de tu cotizador -->
+<!-- ========================================== -->
+<!-- FORMULARIO CORPORATIVO PARA HTML2PDF.JS -->
+<!-- ========================================== -->
+<div class="cotizador-container">
+    <!-- Este bloque 'area-pdf' es lo que la librería convertirá en el archivo final -->
+    <div id="area-pdf" style="padding: 20px; background: white;">
+        <h2>PRESUPUESTO DE INSUMOS corporativos</h2>
+        <p style="font-size: 13px; color: #64748b;">
+            <strong>Fecha de Emisión:</strong> <span id="pdf-fecha"></span><br>
+            <strong>Validez de la oferta:</strong> 15 días continuos
+        </p>
 
-<!-- ======================================================== -->
-<!-- SCRIPT ÚNICO GENERAL DEL COTIZADOR (AL FINAL DEL BODY)   -->
-<!-- ======================================================== -->
-<!-- ======================================================== -->
-<!-- SCRIPT CORPORATIVO CON VENTANA DE IMPRESIÓN AISLADA      -->
-<!-- ======================================================== -->
+        <!-- Datos del Cliente ( Campos que llenará el usuario ) -->
+        <div class="cotizador-form-group">
+            <label for="client_name">Nombre de la Empresa / Cliente</label>
+            <input type="text" id="client_name" class="cotizador-input" placeholder="Ej. Inversiones Alfa C.A.">
+        </div>
+        <div class="cotizador-form-group">
+            <label for="client_rif">Identificación Fiscal (RIF / NIT / RUT)</label>
+            <input type="text" id="client_rif" class="cotizador-input" placeholder="Ej. J-12345678-9">
+        </div>
+        <div class="cotizador-form-group">
+            <label for="client_email">Correo Electrónico Corporativo</label>
+            <input type="email" id="client_email" class="cotizador-input" placeholder="compras@empresa.com">
+        </div>
+
+        <!-- Tabla de Suministros -->
+        <h3>Productos a Cotizar</h3>
+        <div id="productos-container">
+            <div class="cotizador-product-row">
+                <select class="producto-select" onchange="verificarStockYPrecio(this)">
+                    <option value="">-- Seleccione un producto --</option>
+                </select>
+                <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()">
+                <span class="cotizador-info-dinamica"></span>
+            </div>
+        </div>
+        
+        <button type="button" id="btn-añadir" class="cotizador-btn cotizador-btn-add" onclick="agregarFilaProducto()">+ Añadir otro producto</button>
+
+        <!-- Totales comerciales -->
+        <div class="cotizador-summary">
+            <p>Subtotal: <span id="lbl-subtotal">\$0.00</span></p>
+            <p>IVA (16%): <span id="lbl-iva">\$0.00</span></p>
+            <p class="cotizador-total">Total General: <span id="lbl-total">\$0.00</span></p>
+        </div>
+        
+        <p style="font-size: 11px; color: #94a3b8; margin-top: 15px; font-style: italic;">
+            * Los precios están sujetos a cambios según la variación de inventario físico en nuestros almacenes.
+        </p>
+    </div>
+
+    <br>
+    <!-- Este botón está fuera del área del PDF para que no salga impreso -->
+    <button class="cotizador-btn" onclick="descargarPresupuestoHTML()">Generar y Descargar Cotización (PDF)</button>
+</div>
+
 <script>
-    // 1. TU INVENTARIO DE PAPELERÍA EDITABLE EN GITHUB
+    // ========================================================
+    //   TU INVENTARIO EN GITHUB (EDITA AQUÍ PRECIOS Y STOCK)
+    // ========================================================
     const listaProductosDB = [
         { id: 1, nombre: "Resma de Papel Carta Chamex", precio: 4.50, stock: 150 },
         { id: 2, nombre: "Caja de Bolígrafos Negros (12und)", precio: 3.20, stock: 40 },
         { id: 3, nombre: "Carpeta de Fibra con Gancho (Docena)", precio: 12.10, stock: 500 },
-        { id: 4, nombre: "Marcador Acrílico Azul Sharpie", precio: 1.50, stock: 80 },
-        { id: 5, nombre: "Cinta Embalar Transparente 40M", precio: 2.15, stock: 200 }
+        { id: 4, nombre: "Marcador Acrílico Azul Sharpie", precio: 1.50, stock: 80 }
     ];
 
-    // 2. LOGÍSTICA DE CARGA AUTOMÁTICA EN TU FORMULARIO
     document.addEventListener("DOMContentLoaded", () => {
-        const f = document.getElementById("pdf-fecha");
-        if (f) f.textContent = new Date().toLocaleDateString();
+        document.getElementById("pdf-fecha").textContent = new Date().toLocaleDateString();
         llenarSelects();
     });
 
     function llenarSelects() {
-        document.querySelectorAll('.producto-select').forEach(select => {
-            const val = select.value;
-                      // >>> PEGA ESTO JUSTO DEBAJO DE: const val = select.value; <<<
+        const selects = document.querySelectorAll('.producto-select');
+        selects.forEach(select => {
+            const valorActual = select.value;
             select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
             listaProductosDB.forEach(p => {
                 let opt = document.createElement('option');
                 opt.value = p.id;
                 opt.textContent = p.nombre;
-                if(p.id == val) opt.selected = true;
-                select.appendChild(opt);
-            });
-        });
-    } // >>> AQUÍ TERMINA LA FUNCIÓN LLENAR SELECTS <<<
-
-            select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
-            listaProductosDB.forEach(p => {
-                let opt = document.createElement('option');
-                opt.value = p.id;
-                opt.textContent = p.nombre;
-                if(p.id == val) opt.selected = true;
+                if(p.id == valorActual) opt.selected = true;
                 select.appendChild(opt);
             });
         });
     }
 
     function agregarFilaProducto() {
-        const contenedor = document.getElementById('productos-container');
-        if (!contenedor) return;
-        const fila = document.createElement('div');
-        fila.className = 'cotizador-product-row';
-        fila.style.display = "flex";
-        fila.style.gap = "15px";
-        fila.style.marginBottom = "10px";
-        fila.style.alignItems = "center";
-        fila.innerHTML = `
-            <select class="producto-select" onchange="verificarStockYPrecio(this)" style="flex: 2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;"></select>
-            <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()" style="width: 80px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;">
-            <span class="cotizador-info-dinamica" style="margin-left: 10px; font-size: 12px; color: #64748b;"></span>
+        const container = document.getElementById('productos-container');
+        const nuevaFila = document.createElement('div');
+        nuevaFila.className = 'cotizador-product-row';
+        nuevaFila.innerHTML = `
+            <select class="producto-select" onchange="verificarStockYPrecio(this)"></select>
+            <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()">
+            <span class="cotizador-info-dinamica"></span>
         `;
-        contenedor.appendChild(fila);
+        container.appendChild(nuevaFila);
         llenarSelects();
     }
 
-    function verificarStockYPrecio(select) {
-        const fila = select.parentElement;
-        if (!fila) return;
-        const cantInput = fila.querySelector('.producto-cantidad');
-        const info = fila.querySelector('.cotizador-info-dinamica');
-        const prod = listaProductosDB.find(p => p.id == select.value);
+    function verificarStockYPrecio(selectElement) {
+        const fila = selectElement.parentElement;
+        const cantidadInput = fila.querySelector('.producto-cantidad');
+        const infoSpan = fila.querySelector('.cotizador-info-dinamica');
+        
+        const productoId = selectElement.value;
+        const prodSelected = listaProductosDB.find(p => p.id == productoId);
 
-        if (prod && cantInput && info) {
-            info.textContent = `$${prod.precio.toFixed(2)} c/u (Stock: ${prod.stock})`;
-            cantInput.max = prod.stock;
-            if (parseInt(cantInput.value) > prod.stock) {
-                alert(`Inventario insuficiente. Solo quedan ${prod.stock} unidades.`);
-                cantInput.value = prod.stock;
+        if (prodSelected) {
+            infoSpan.textContent = `$${prodSelected.precio.toFixed(2)} c/u (Disponibles: ${prodSelected.stock})`;
+            cantidadInput.max = prodSelected.stock;
+            if (parseInt(cantidadInput.value) > prodSelected.stock) {
+                alert(`Inventario insuficiente. Solo quedan ${prodSelected.stock} unidades.`);
+                cantidadInput.value = prodSelected.stock;
             }
-        } else if (info) {
-            info.textContent = "";
+        } else {
+            infoSpan.textContent = "";
         }
         calcularTotales();
     }
@@ -996,127 +1022,47 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
     function calcularTotales() {
         subtotalGeneral = 0;
         document.querySelectorAll('.cotizador-product-row').forEach(fila => {
-            const sel = fila.querySelector('.producto-select');
-            const cant = fila.querySelector('.producto-cantidad');
-            if (sel && cant) {
-                const prod = listaProductosDB.find(p => p.id == sel.value);
-                if (prod) sub += (prod.precio * (parseInt(cant.value) || 0));
-            }
+            const id = fila.querySelector('.producto-select').value;
+            const cant = parseInt(fila.querySelector('.producto-cantidad').value) || 0;
+            const prod = listaProductosDB.find(p => p.id == id);
+            if (prod) subtotalGeneral += (prod.precio * cant);
         });
 
-        ivaGeneral = subtotalGeneral * 0.16; // IVA Venezuela (16%)
+        ivaGeneral = subtotalGeneral * 0.16; // IVA Venezuela 16%
         totalGeneral = subtotalGeneral + ivaGeneral;
 
-        const s = document.getElementById('lbl-subtotal');
-        const i = document.getElementById('lbl-iva');
-        const t = document.getElementById('lbl-total');
-
-        if (s) s.textContent = `$${subtotalGeneral.toFixed(2)}`;
-        if (i) i.textContent = `$${ivaGeneral.toFixed(2)}`;
-        if (t) t.textContent = `$${totalGeneral.toFixed(2)}`;
+        document.getElementById('lbl-subtotal').textContent = `$${subtotalGeneral.toFixed(2)}`;
+        document.getElementById('lbl-iva').textContent = `$${ivaGeneral.toFixed(2)}`;
+        document.getElementById('lbl-total').textContent = `$${totalGeneral.toFixed(2)}`;
     }
 
-    // 3. LA FUNCIÓN CORRECTA QUE GENERA UNA HOJA LIMPIA SIN CONFUNDIR AL NAVEGADOR
+    // LÓGICA DE DESCARGA USANDO TU LIBRERÍA HTML2PDF.JS
     function descargarPresupuestoHTML() {
-        const cliente = document.getElementById('client_name').value.trim();
-        const rif = document.getElementById('client_rif').value.trim();
-        const email = document.getElementById('client_email').value.trim();
-
+        const cliente = document.getElementById('client_name').value;
         if (!cliente) {
             alert("Por favor, ingrese el nombre del cliente corporativo.");
             return;
         }
 
-        // Armamos la tabla de productos seleccionados con un diseño limpio corporativo
-        let filasProductosHTML = "";
-        document.querySelectorAll('.cotizador-product-row').forEach(fila => {
-            const select = fila.querySelector('.producto-select');
-            const cantidadInput = fila.querySelector('.producto-cantidad');
-            
-            if (select && cantidadInput && select.value !== "") {
-                const prod = listaProductosDB.find(p => p.id == select.value);
-                const cantidad = parseInt(cantidadInput.value) || 0;
-                
-                if (prod && cantidad > 0) {
-                    filasProductosHTML += `
-                        <tr>
-                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${prod.nombre}</td>
-                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: center;">${cantidad}</td>
-                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: right;">$${prod.precio.toFixed(2)}</td>
-                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: right;">$${(prod.precio * cantidad).toFixed(2)}</td>
-                        </tr>
-                    `;
-                }
-            }
-        });
+        // Ocultamos temporalmente el botón de añadir para que no salga en la 'foto' del PDF
+        document.getElementById('btn-añadir').style.display = 'none';
 
-        // Abrimos una nueva ventana en el navegador totalmente aislada de tu plantilla web
-        const ventanaImpresion = window.open('', '_blank');
+        const elementoParaConvertir = document.getElementById('area-pdf');
         
-        // Inyectamos un documento HTML impecable diseñado exclusivamente para la hoja A4
-        ventanaImpresion.document.write(`
-            <html>
-            <head>
-                <title>Presupuesto - ${cliente}</title>
-                <style>
-                    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; margin: 40px; }
-                    .header { margin-bottom: 30px; border-bottom: 3px solid #3b82f6; padding-bottom: 15px; }
-                    .header h1 { margin: 0; color: #1e3a8a; font-size: 26px; }
-                    .datos-cliente { background: #f8fafc; padding: 15px; border-radius: 6px; margin-bottom: 30px; border: 1px solid #e2e8f0; }
-                    .datos-cliente p { margin: 4px 0; font-size: 14px; }
-                    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-                    th { background: #0f172a; color: white; padding: 10px; text-align: left; font-size: 14px; }
-                    .totales-tabla { width: 40%; margin-left: auto; margin-top: 20px; font-size: 15px; }
-                    .totales-tabla td { padding: 6px 0; }
-                    @page { margin: 10mm; }
-                </style>
-            </head>
-            <body>
-                <div class="header">
-                    <h1>PRESUPUESTO DE INSUMOS CORPORATIVOS</h1>
-                    <p style="font-size: 13px; color: #64748b; margin: 5px 0 0 0;">
-                        <strong>Fecha de Emisión:</strong> ${new Date().toLocaleDateString()}<br>
-                        <strong>Validez de la Oferta:</strong> 15 días continuos
-                    </p>
-                </div>
+        const opcionesConfig = {
+            margin:       10,
+            filename:     `Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
 
-                <div class="datos-cliente">
-                    <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #0f172a;">DATOS DEL CLIENTE:</h3>
-                    <p><strong>Empresa / Razón Social:</strong> ${cliente}</p>
-                    <p><strong>Identificación Fiscal (RIF):</strong> ${rif || 'N/A'}</p>
-                    <p><strong>Correo Electrónico:</strong> ${email || 'N/A'}</p>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 50%;">Producto</th>
-                            <th style="width: 15%; text-align: center;">Cant.</th>
-                            <th style="width: 15%; text-align: right;">P. Unit</th>
-                            <th style="width: 20%; text-align: right;">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${filasProductosHTML || '<tr><td colspan="4" style="padding: 10px; text-align: center; color: #94a3b8;">No se seleccionaron productos válidos.</td></tr>'}
-                    </tbody>
-                </table>
-
-                <table class="totales-tabla">
-                    <tr>
-                        <td>Subtotal:</td>
-                        <td style="text-align: right;">$${subtotalGeneral.toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                        <td>IVA (16%):</td>
-                        <td style="text-align: right;">$${ivaGeneral.toFixed(2)}</td>
-                    </tr>
-                    <tr style="font-weight: bold; font-size: 17px; border-top: 2px solid #0f172a;">
-                        <td style="padding-top: 10px;">TOTAL GENERAL:</td>
-                        <td style="text-align: right; padding-top: 10px; color: #1e3a8a;">$${totalGeneral.toFixed(2)}</td>
-                    </tr>
-                </table>
-
+        // Ejecuta la conversión directa
+        html2pdf().set(opcionesConfig).from(elementoParaConvertir).save().then(() => {
+            // Volvemos a mostrar el botón en la web una vez que el PDF se descargó
+            document.getElementById('btn-añadir').style.display = 'inline-block';
+        });
+    }
 </script>
-
 </body>
 </html>
