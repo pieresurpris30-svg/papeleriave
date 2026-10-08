@@ -1062,7 +1062,60 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
             // Volvemos a mostrar el botón en la web una vez que el PDF se descargó
             document.getElementById('btn-añadir').style.display = 'inline-block';
         });
+          <!-- Este es el botón que ya tienes en tu página -->
+    <button class="cotizador-btn" onclick="descargarPresupuestoHTML()">Generar y Descargar Cotización (PDF)</button>
+</div>
+
+<script>
+    // ... Aquí arriba ya debes tener tu listaProductosDB y las otras funciones ...
+    // (llenarSelects, agregarFilaProducto, verificarStockYPrecio, calcularTotales)
+
+    // ========================================================
+    // PEGA ESTA FUNCIÓN AQUÍ (JUSTO ANTES DE CERRAR EL SCRIPT)
+    // ========================================================
+    function descargarPresupuestoHTML() {
+        const cliente = document.getElementById('client_name').value;
+        if (!cliente) {
+            alert("Por favor, ingrese el nombre del cliente corporativo.");
+            return;
+        }
+
+        // Ocultamos el botón de añadir para que no salga en el PDF
+        document.getElementById('btn-añadir').style.display = 'none';
+
+        const elementoParaConvertir = document.getElementById('area-pdf');
+        
+        const opcionesConfig = {
+            margin:       10,
+            filename:     `Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true,
+                logging: false,
+                letterRendering: true
+            },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Esperamos 300ms a que el navegador procese los datos antes de tomar la foto
+        setTimeout(() => {
+            html2pdf()
+                .set(opcionesConfig)
+                .from(elementoParaConvertir)
+                .save()
+                .then(() => {
+                    // Volvemos a mostrar el botón en la web
+                    document.getElementById('btn-añadir').style.display = 'inline-block';
+                })
+                .catch((err) => {
+                    console.error("Error al generar PDF: ", err);
+                    document.getElementById('btn-añadir').style.display = 'inline-block';
+                });
+        }, 300);
     }
+    // ========================================================
+
 </script>
 </body>
 </html>
