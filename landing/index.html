@@ -610,50 +610,7 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
     @media (max-width: 400px) {
       .cta-card { padding: 30px 20px; }
     }
- <!-- ========================================== -->
-<!-- SISTEMA DE VISIBILIDAD DE IMPRESIÓN (HEAD) -->
-<!-- ========================================== -->
-<style>
-    /* Estilos visuales del cotizador en la pantalla */
-    .cotizador-container { max-width: 800px; background: white; margin: 20px auto; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1e293b; }
-    .cotizador-container h2 { color: #0f172a; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; margin-top: 0; font-size: 24px; }
-    .cotizador-container h3 { color: #334155; font-size: 18px; margin-top: 25px; margin-bottom: 15px; }
-    .cotizador-form-group { margin-bottom: 15px; }
-    .cotizador-form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #475569; font-size: 14px; }
-    .cotizador-input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; background: #fff; font-size: 14px; }
-    .cotizador-product-row { display: flex; gap: 15px; margin-bottom: 10px; align-items: center; }
-    .cotizador-product-row select { flex: 2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; background: #fff; }
-    .cotizador-product-row input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; width: 80px; }
-    .cotizador-btn { background-color: #3b82f6; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; transition: background 0.3s; }
-    .cotizador-btn:hover { background-color: #2563eb; }
-    .cotizador-btn-add { background-color: #10b981; margin-top: 10px; width: auto; padding: 8px 15px; font-size: 14px; display: inline-block; }
-    .cotizador-btn-add:hover { background-color: #059669; }
-    .cotizador-summary { margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 4px; }
-    .cotizador-summary p { margin: 5px 0; font-size: 16px; display: flex; justify-content: space-between; }
-    .cotizador-total { font-size: 18px; font-weight: bold; color: #0f172a; border-top: 1px dashed #cbd5e1; padding-top: 5px; margin-top: 5px; display: flex; justify-content: space-between; }
-    .cotizador-info-dinamica { font-size: 12px; color: #64748b; margin-left: 10px; min-width: 130px; display: inline-block; }
 
-    /* ======================================================= */
-    /* NUEVA REGLA REINA: VISIBILITY EVITA EL LIENZO EN BLANCO */
-    /* ======================================================= */
-    @media print {
-        /* Oculta de forma segura todo el fondo de tu página web */
-        body * { visibility: hidden; }
-        
-        /* Hace que SOLO el bloque del presupuesto sea visible en la hoja */
-        #area-pdf, #area-pdf * { visibility: visible; }
-        
-        /* Posiciona el presupuesto arriba a la izquierda de la hoja impresa */
-        #area-pdf { position: absolute; left: 0; top: 0; width: 100%; padding: 0; margin: 0; }
-        
-        /* Esconde los botones interactivos dentro del área visible */
-        #btn-añadir, .cotizador-btn, .cotizador-btn-add { display: none !important; visibility: hidden !important; }
-        
-        /* Elimina los bordes de los campos de texto para que parezca un documento formal impreso */
-        select { border: none !important; appearance: none !important; -webkit-appearance: none !important; background: transparent !important; font-weight: bold; }
-        input { border: none !important; background: transparent !important; box-shadow: none !important; }
-    }
-</style>
 
 </head>
 <body>
@@ -950,6 +907,9 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
 <!-- ======================================================== -->
 <!-- SCRIPT ÚNICO GENERAL DEL COTIZADOR (AL FINAL DEL BODY)   -->
 <!-- ======================================================== -->
+<!-- ======================================================== -->
+<!-- SCRIPT CORPORATIVO CON VENTANA DE IMPRESIÓN AISLADA      -->
+<!-- ======================================================== -->
 <script>
     // 1. TU INVENTARIO DE PAPELERÍA EDITABLE EN GITHUB
     const listaProductosDB = [
@@ -960,7 +920,7 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
         { id: 5, nombre: "Cinta Embalar Transparente 40M", precio: 2.15, stock: 200 }
     ];
 
-    // 2. LOGÍSTICA DE INICIALIZACIÓN Y FUNCIONES MATEMÁTICAS
+    // 2. LOGÍSTICA DE CARGA AUTOMÁTICA EN TU FORMULARIO
     document.addEventListener("DOMContentLoaded", () => {
         const f = document.getElementById("pdf-fecha");
         if (f) f.textContent = new Date().toLocaleDateString();
@@ -986,10 +946,14 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
         if (!contenedor) return;
         const fila = document.createElement('div');
         fila.className = 'cotizador-product-row';
+        fila.style.display = "flex";
+        fila.style.gap = "15px";
+        fila.style.marginBottom = "10px";
+        fila.style.alignItems = "center";
         fila.innerHTML = `
-            <select class="producto-select" onchange="verificarStockYPrecio(this)"></select>
-            <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()">
-            <span class="cotizador-info-dinamica"></span>
+            <select class="producto-select" onchange="verificarStockYPrecio(this)" style="flex: 2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;"></select>
+            <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()" style="width: 80px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;">
+            <span class="cotizador-info-dinamica" style="margin-left: 10px; font-size: 12px; color: #64748b;"></span>
         `;
         contenedor.appendChild(fila);
         llenarSelects();
@@ -1015,8 +979,10 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
         calcularTotales();
     }
 
+    let subtotalGeneral = 0, ivaGeneral = 0, totalGeneral = 0;
+
     function calcularTotales() {
-        let sub = 0;
+        subtotalGeneral = 0;
         document.querySelectorAll('.cotizador-product-row').forEach(fila => {
             const sel = fila.querySelector('.producto-select');
             const cant = fila.querySelector('.producto-cantidad');
@@ -1026,31 +992,119 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
             }
         });
 
-        const iva = sub * 0.16; // Tasa de IVA estándar de Venezuela (16%)
-        const tot = sub + iva;
+        ivaGeneral = subtotalGeneral * 0.16; // IVA Venezuela (16%)
+        totalGeneral = subtotalGeneral + ivaGeneral;
 
         const s = document.getElementById('lbl-subtotal');
         const i = document.getElementById('lbl-iva');
         const t = document.getElementById('lbl-total');
 
-        if (s) s.textContent = `$${sub.toFixed(2)}`;
-        if (i) i.textContent = `$${iva.toFixed(2)}`;
-        if (t) t.textContent = `$${tot.toFixed(2)}`;
+        if (s) s.textContent = `$${subtotalGeneral.toFixed(2)}`;
+        if (i) i.textContent = `$${ivaGeneral.toFixed(2)}`;
+        if (t) t.textContent = `$${totalGeneral.toFixed(2)}`;
     }
 
-    // 3. FUNCIÓN DE IMPRESIÓN LIMPIA NATAL (REEMPLAZA TODO LO VIEJO)
+    // 3. LA FUNCIÓN CORRECTA QUE GENERA UNA HOJA LIMPIA SIN CONFUNDIR AL NAVEGADOR
     function descargarPresupuestoHTML() {
         const cliente = document.getElementById('client_name').value.trim();
+        const rif = document.getElementById('client_rif').value.trim();
+        const email = document.getElementById('client_email').value.trim();
+
         if (!cliente) {
             alert("Por favor, ingrese el nombre del cliente corporativo.");
             return;
         }
-        
-        // Abre instantáneamente el software oficial de impresión de la computadora o teléfono
-        window.print();
-    }
-</script> <!-- AQUÍ TERMINA TU ARCHIVO ANTES DEL CIERRE DEL BODY -->
 
+        // Armamos la tabla de productos seleccionados con un diseño limpio corporativo
+        let filasProductosHTML = "";
+        document.querySelectorAll('.cotizador-product-row').forEach(fila => {
+            const select = fila.querySelector('.producto-select');
+            const cantidadInput = fila.querySelector('.producto-cantidad');
+            
+            if (select && cantidadInput && select.value !== "") {
+                const prod = listaProductosDB.find(p => p.id == select.value);
+                const cantidad = parseInt(cantidadInput.value) || 0;
+                
+                if (prod && cantidad > 0) {
+                    filasProductosHTML += `
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${prod.nombre}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: center;">${cantidad}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: right;">$${prod.precio.toFixed(2)}</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: right;">$${(prod.precio * cantidad).toFixed(2)}</td>
+                        </tr>
+                    `;
+                }
+            }
+        });
+
+        // Abrimos una nueva ventana en el navegador totalmente aislada de tu plantilla web
+        const ventanaImpresion = window.open('', '_blank');
+        
+        // Inyectamos un documento HTML impecable diseñado exclusivamente para la hoja A4
+        ventanaImpresion.document.write(`
+            <html>
+            <head>
+                <title>Presupuesto - ${cliente}</title>
+                <style>
+                    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; margin: 40px; }
+                    .header { margin-bottom: 30px; border-bottom: 3px solid #3b82f6; padding-bottom: 15px; }
+                    .header h1 { margin: 0; color: #1e3a8a; font-size: 26px; }
+                    .datos-cliente { background: #f8fafc; padding: 15px; border-radius: 6px; margin-bottom: 30px; border: 1px solid #e2e8f0; }
+                    .datos-cliente p { margin: 4px 0; font-size: 14px; }
+                    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+                    th { background: #0f172a; color: white; padding: 10px; text-align: left; font-size: 14px; }
+                    .totales-tabla { width: 40%; margin-left: auto; margin-top: 20px; font-size: 15px; }
+                    .totales-tabla td { padding: 6px 0; }
+                    @page { margin: 10mm; }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>PRESUPUESTO DE INSUMOS CORPORATIVOS</h1>
+                    <p style="font-size: 13px; color: #64748b; margin: 5px 0 0 0;">
+                        <strong>Fecha de Emisión:</strong> ${new Date().toLocaleDateString()}<br>
+                        <strong>Validez de la Oferta:</strong> 15 días continuos
+                    </p>
+                </div>
+
+                <div class="datos-cliente">
+                    <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #0f172a;">DATOS DEL CLIENTE:</h3>
+                    <p><strong>Empresa / Razón Social:</strong> ${cliente}</p>
+                    <p><strong>Identificación Fiscal (RIF):</strong> ${rif || 'N/A'}</p>
+                    <p><strong>Correo Electrónico:</strong> ${email || 'N/A'}</p>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Producto</th>
+                            <th style="width: 15%; text-align: center;">Cant.</th>
+                            <th style="width: 15%; text-align: right;">P. Unit</th>
+                            <th style="width: 20%; text-align: right;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filasProductosHTML || '<tr><td colspan="4" style="padding: 10px; text-align: center; color: #94a3b8;">No se seleccionaron productos válidos.</td></tr>'}
+                    </tbody>
+                </table>
+
+                <table class="totales-tabla">
+                    <tr>
+                        <td>Subtotal:</td>
+                        <td style="text-align: right;">$${subtotalGeneral.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>IVA (16%):</td>
+                        <td style="text-align: right;">$${ivaGeneral.toFixed(2)}</td>
+                    </tr>
+                    <tr style="font-weight: bold; font-size: 17px; border-top: 2px solid #0f172a;">
+                        <td style="padding-top: 10px;">TOTAL GENERAL:</td>
+                        <td style="text-align: right; padding-top: 10px; color: #1e3a8a;">$${totalGeneral.toFixed(2)}</td>
+                    </tr>
+                </table>
+
+</script>
 
 </body>
 </html>
