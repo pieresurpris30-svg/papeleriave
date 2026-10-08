@@ -930,6 +930,18 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
     function llenarSelects() {
         document.querySelectorAll('.producto-select').forEach(select => {
             const val = select.value;
+                      // >>> PEGA ESTO JUSTO DEBAJO DE: const val = select.value; <<<
+            select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
+            listaProductosDB.forEach(p => {
+                let opt = document.createElement('option');
+                opt.value = p.id;
+                opt.textContent = p.nombre;
+                if(p.id == val) opt.selected = true;
+                select.appendChild(opt);
+            });
+        });
+    } // >>> AQUÍ TERMINA LA FUNCIÓN LLENAR SELECTS <<<
+
             select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
             listaProductosDB.forEach(p => {
                 let opt = document.createElement('option');
