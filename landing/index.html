@@ -895,19 +895,20 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
   });
 </script>
 <!-- ================= SECCIÓN COTIZADOR B2B EDITABLE ================= -->
-<!-- ========================================== -->
-<!-- FORMULARIO CORPORATIVO PARA HTML2PDF.JS -->
-<!-- ========================================== -->
+<!-- ======================================================= -->
+<!-- BLOQUE INTEGRAL DEL COTIZADOR: PEGAR COMPLETO EN EL BODY -->
+<!-- ======================================================= -->
 <div class="cotizador-container">
-    <!-- Este bloque 'area-pdf' es lo que la librería convertirá en el archivo final -->
-    <div id="area-pdf" style="padding: 20px; background: white;">
-        <h2>PRESUPUESTO DE INSUMOS corporativos</h2>
-        <p style="font-size: 13px; color: #64748b;">
+    
+    <!-- CONTENEDOR 'area-pdf': Esto es lo que saldrá impreso en el archivo final -->
+    <div id="area-pdf" style="padding: 15px; background: white; border-radius: 4px;">
+        <h2>PRESUPUESTO DE INSUMOS CORPORATIVOS</h2>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">
             <strong>Fecha de Emisión:</strong> <span id="pdf-fecha"></span><br>
             <strong>Validez de la oferta:</strong> 15 días continuos
         </p>
 
-        <!-- Datos del Cliente ( Campos que llenará el usuario ) -->
+        <!-- Datos del Cliente Corporativo -->
         <div class="cotizador-form-group">
             <label for="client_name">Nombre de la Empresa / Cliente</label>
             <input type="text" id="client_name" class="cotizador-input" placeholder="Ej. Inversiones Alfa C.A.">
@@ -921,201 +922,169 @@ src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
             <input type="email" id="client_email" class="cotizador-input" placeholder="compras@empresa.com">
         </div>
 
-        <!-- Tabla de Suministros -->
+        <!-- Tabla de Suministros Dinámicos -->
         <h3>Productos a Cotizar</h3>
         <div id="productos-container">
             <div class="cotizador-product-row">
                 <select class="producto-select" onchange="verificarStockYPrecio(this)">
                     <option value="">-- Seleccione un producto --</option>
                 </select>
-                <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()">
-                <span class="cotizador-info-dinamica"></span>
+                <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()" style="width: 80px;">
+                <span class="cotizador-info-dinamica" style="margin-left: 10px; font-size: 12px; color: #64748b;"></span>
             </div>
         </div>
         
-        <button type="button" id="btn-añadir" class="cotizador-btn cotizador-btn-add" onclick="agregarFilaProducto()">+ Añadir otro producto</button>
+        <!-- Botón para añadir filas -->
+        <button type="button" id="btn-añadir" class="cotizador-btn cotizador-btn-add" onclick="agregarFilaProducto()" style="margin-top: 10px;">+ Añadir otro producto</button>
 
-        <!-- Totales comerciales -->
-        <div class="cotizador-summary">
-            <p>Subtotal: <span id="lbl-subtotal">\$0.00</span></p>
-            <p>IVA (16%): <span id="lbl-iva">\$0.00</span></p>
-            <p class="cotizador-total">Total General: <span id="lbl-total">\$0.00</span></p>
+        <!-- Totales de la Cotización -->
+        <div class="cotizador-summary" style="margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 4px;">
+            <p style="display: flex; justify-content: space-between; margin: 5px 0;">Subtotal: <span id="lbl-subtotal">\$0.00</span></p>
+            <p style="display: flex; justify-content: space-between; margin: 5px 0;">IVA (16%): <span id="lbl-iva">\$0.00</span></p>
+            <p class="cotizador-total" style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 5px;">Total General: <span id="lbl-total">\$0.00</span></p>
         </div>
         
-        <p style="font-size: 11px; color: #94a3b8; margin-top: 15px; font-style: italic;">
-            * Los precios están sujetos a cambios según la variación de inventario físico en nuestros almacenes.
+        <p style="font-size: 11px; color: #94a3b8; margin-top: 20px; font-style: italic;">
+            * Los precios reflejados están sujetos a variaciones según la disponibilidad de inventario físico en nuestros almacenes.
         </p>
     </div>
 
     <br>
-    <!-- Este botón está fuera del área del PDF para que no salga impreso -->
-    <button class="cotizador-btn" onclick="descargarPresupuestoHTML()">Generar y Descargar Cotización (PDF)</button>
+    <!-- BOTÓN DE DESCARGA: Queda fuera de 'area-pdf' para que no salga impreso en la hoja -->
+    <button type="button" class="cotizador-btn" onclick="descargarPresupuestoHTML()">Generar y Descargar Cotización (PDF)</button>
 </div>
 
 <script>
-    // ========================================================
-    //   TU INVENTARIO EN GITHUB (EDITA AQUÍ PRECIOS Y STOCK)
-    // ========================================================
+    // 1. INVENTARIO DE PRODUCTOS EDITABLE EN GITHUB
     const listaProductosDB = [
         { id: 1, nombre: "Resma de Papel Carta Chamex", precio: 4.50, stock: 150 },
         { id: 2, nombre: "Caja de Bolígrafos Negros (12und)", precio: 3.20, stock: 40 },
         { id: 3, nombre: "Carpeta de Fibra con Gancho (Docena)", precio: 12.10, stock: 500 },
-        { id: 4, nombre: "Marcador Acrílico Azul Sharpie", precio: 1.50, stock: 80 }
+        { id: 4, nombre: "Marcador Acrílico Azul Sharpie", precio: 1.50, stock: 80 },
+        { id: 5, nombre: "Cinta Embalar Transparente 40M", precio: 2.15, stock: 200 }
     ];
 
+    // 2. LOGÍSTICA DE INICIALIZACIÓN
     document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("pdf-fecha").textContent = new Date().toLocaleDateString();
+        const f = document.getElementById("pdf-fecha");
+        if (f) f.textContent = new Date().toLocaleDateString();
         llenarSelects();
     });
 
     function llenarSelects() {
-        const selects = document.querySelectorAll('.producto-select');
-        selects.forEach(select => {
-            const valorActual = select.value;
+        document.querySelectorAll('.producto-select').forEach(select => {
+            const val = select.value;
             select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
             listaProductosDB.forEach(p => {
                 let opt = document.createElement('option');
                 opt.value = p.id;
                 opt.textContent = p.nombre;
-                if(p.id == valorActual) opt.selected = true;
+                if(p.id == val) opt.selected = true;
                 select.appendChild(opt);
             });
         });
     }
 
     function agregarFilaProducto() {
-        const container = document.getElementById('productos-container');
-        const nuevaFila = document.createElement('div');
-        nuevaFila.className = 'cotizador-product-row';
-        nuevaFila.innerHTML = `
-            <select class="producto-select" onchange="verificarStockYPrecio(this)"></select>
-            <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()">
-            <span class="cotizador-info-dinamica"></span>
+        const contenedor = document.getElementById('productos-container');
+        if (!contenedor) return;
+        const fila = document.createElement('div');
+        fila.className = 'cotizador-product-row';
+        fila.style.display = "flex";
+        fila.style.gap = "15px";
+        fila.style.marginBottom = "10px";
+        fila.style.alignItems = "center";
+        fila.innerHTML = `
+            <select class="producto-select" onchange="verificarStockYPrecio(this)" style="flex: 2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;"></select>
+            <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()" style="width: 80px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;">
+            <span class="cotizador-info-dinamica" style="margin-left: 10px; font-size: 12px; color: #64748b;"></span>
         `;
-        container.appendChild(nuevaFila);
+        contenedor.appendChild(fila);
         llenarSelects();
     }
 
-    function verificarStockYPrecio(selectElement) {
-        const fila = selectElement.parentElement;
-        const cantidadInput = fila.querySelector('.producto-cantidad');
-        const infoSpan = fila.querySelector('.cotizador-info-dinamica');
-        
-        const productoId = selectElement.value;
-        const prodSelected = listaProductosDB.find(p => p.id == productoId);
+    function verificarStockYPrecio(select) {
+        const fila = select.parentElement;
+        if (!fila) return;
+        const cantInput = fila.querySelector('.producto-cantidad');
+        const info = fila.querySelector('.cotizador-info-dinamica');
+        const prod = listaProductosDB.find(p => p.id == select.value);
 
-        if (prodSelected) {
-            infoSpan.textContent = `$${prodSelected.precio.toFixed(2)} c/u (Disponibles: ${prodSelected.stock})`;
-            cantidadInput.max = prodSelected.stock;
-            if (parseInt(cantidadInput.value) > prodSelected.stock) {
-                alert(`Inventario insuficiente. Solo quedan ${prodSelected.stock} unidades.`);
-                cantidadInput.value = prodSelected.stock;
+        if (prod && cantInput && info) {
+            info.textContent = `$${prod.precio.toFixed(2)} c/u (Stock: ${prod.stock})`;
+            cantInput.max = prod.stock;
+            if (parseInt(cantInput.value) > prod.stock) {
+                alert(`Inventario insuficiente. Solo quedan ${prod.stock} unidades.`);
+                cantInput.value = prod.stock;
             }
-        } else {
-            infoSpan.textContent = "";
+        } else if (info) {
+            info.textContent = "";
         }
         calcularTotales();
     }
 
-    let subtotalGeneral = 0, ivaGeneral = 0, totalGeneral = 0;
-
     function calcularTotales() {
-        subtotalGeneral = 0;
+        let sub = 0;
         document.querySelectorAll('.cotizador-product-row').forEach(fila => {
-            const id = fila.querySelector('.producto-select').value;
-            const cant = parseInt(fila.querySelector('.producto-cantidad').value) || 0;
-            const prod = listaProductosDB.find(p => p.id == id);
-            if (prod) subtotalGeneral += (prod.precio * cant);
+            const sel = fila.querySelector('.producto-select');
+            const cant = fila.querySelector('.producto-cantidad');
+            if (sel && cant) {
+                const prod = listaProductosDB.find(p => p.id == sel.value);
+                if (prod) sub += (prod.precio * (parseInt(cant.value) || 0));
+            }
         });
 
-        ivaGeneral = subtotalGeneral * 0.16; // IVA Venezuela 16%
-        totalGeneral = subtotalGeneral + ivaGeneral;
+        const iva = sub * 0.16; // IVA 16%
+        const tot = sub + iva;
 
-        document.getElementById('lbl-subtotal').textContent = `$${subtotalGeneral.toFixed(2)}`;
-        document.getElementById('lbl-iva').textContent = `$${ivaGeneral.toFixed(2)}`;
-        document.getElementById('lbl-total').textContent = `$${totalGeneral.toFixed(2)}`;
+        const s = document.getElementById('lbl-subtotal');
+        const i = document.getElementById('lbl-iva');
+        const t = document.getElementById('lbl-total');
+
+        if (s) s.textContent = `$${sub.toFixed(2)}`;
+        if (i) i.textContent = `$${iva.toFixed(2)}`;
+        if (t) t.textContent = `$${tot.toFixed(2)}`;
     }
 
-    // LÓGICA DE DESCARGA USANDO TU LIBRERÍA HTML2PDF.JS
+    // 3. FUNCIÓN CORRECTA PARA TU LIBRERÍA HTML2PDF.JS
     function descargarPresupuestoHTML() {
-        const cliente = document.getElementById('client_name').value;
+        const clienteInput = document.getElementById('client_name');
+        const cliente = clienteInput ? clienteInput.value.trim() : "";
+        
         if (!cliente) {
             alert("Por favor, ingrese el nombre del cliente corporativo.");
             return;
         }
 
-        // Ocultamos temporalmente el botón de añadir para que no salga en la 'foto' del PDF
-        document.getElementById('btn-añadir').style.display = 'none';
+        const btnAnadir = document.getElementById('btn-añadir');
+        if (btnAnadir) btnAnadir.style.display = 'none';
 
-        const elementoParaConvertir = document.getElementById('area-pdf');
+        const elemento = document.getElementById('area-pdf');
         
-        const opcionesConfig = {
-            margin:       10,
+        const opciones = {
+            margin:       12,
             filename:     `Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
+            html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
-        // Ejecuta la conversión directa
-        html2pdf().set(opcionesConfig).from(elementoParaConvertir).save().then(() => {
-            // Volvemos a mostrar el botón en la web una vez que el PDF se descargó
-            document.getElementById('btn-añadir').style.display = 'inline-block';
-        });
-          <!-- Este es el botón que ya tienes en tu página -->
-    <button class="cotizador-btn" onclick="descargarPresupuestoHTML()">Generar y Descargar Cotización (PDF)</button>
-</div>
-
-<script>
-    // ... Aquí arriba ya debes tener tu listaProductosDB y las otras funciones ...
-    // (llenarSelects, agregarFilaProducto, verificarStockYPrecio, calcularTotales)
-
-    // ========================================================
-    // PEGA ESTA FUNCIÓN AQUÍ (JUSTO ANTES DE CERRAR EL SCRIPT)
-    // ========================================================
-    function descargarPresupuestoHTML() {
-        const cliente = document.getElementById('client_name').value;
-        if (!cliente) {
-            alert("Por favor, ingrese el nombre del cliente corporativo.");
-            return;
-        }
-
-        // Ocultamos el botón de añadir para que no salga en el PDF
-        document.getElementById('btn-añadir').style.display = 'none';
-
-        const elementoParaConvertir = document.getElementById('area-pdf');
-        
-        const opcionesConfig = {
-            margin:       10,
-            filename:     `Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { 
-                scale: 2, 
-                useCORS: true,
-                logging: false,
-                letterRendering: true
-            },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-
-        // Esperamos 300ms a que el navegador procese los datos antes de tomar la foto
         setTimeout(() => {
-            html2pdf()
-                .set(opcionesConfig)
-                .from(elementoParaConvertir)
-                .save()
-                .then(() => {
-                    // Volvemos a mostrar el botón en la web
-                    document.getElementById('btn-añadir').style.display = 'inline-block';
-                })
-                .catch((err) => {
-                    console.error("Error al generar PDF: ", err);
-                    document.getElementById('btn-añadir').style.display = 'inline-block';
-                });
+            if (typeof html2pdf === 'undefined') {
+                alert("Error: La librería html2pdf.js no se cargó en el Head de la página.");
+                if (btnAnadir) btnAnadir.style.display = 'inline-block';
+                return;
+            }
+
+            html2pdf().set(opciones).from(elemento).save().then(() => {
+                if (btnAnadir) btnAnadir.style.display = 'inline-block';
+            }).catch((err) => {
+                console.error(err);
+                if (btnAnadir) btnAnadir.style.display = 'inline-block';
+            });
         }, 300);
     }
-    // ========================================================
-
 </script>
+
 </body>
 </html>
