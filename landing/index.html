@@ -306,38 +306,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .floating-wa:hover { transform: scale(1.08); }
     .floating-wa::before { content: ""; position: absolute; inset: -.25rem; border-radius: 50%; border: .125rem solid rgba(255,255,255,.55); animation: ping 2s ease-out infinite; }
     @keyframes ping { to { transform: scale(1.6); opacity: 0; } }
-
-    /* ═════════ PLANTILLA PDF (fuera de pantalla) ═════════ */
-    #pdf-host { position: fixed; left: -200vw; top: 0; width: 49.625rem; }
-    .pdf { width: 49.625rem; background: #fff; color: #0B0A14; font-family: var(--font-body); font-size: .8125rem; line-height: 1.45; }
-    .pdf-head { background: #2A2277; color: #fff; padding: 1.75rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
-    .pdf-head img { height: 2.25rem; width: auto; }
-    .pdf-head .co { font-family: var(--font-head); font-weight: 800; font-size: 1rem; margin-top: .5rem; }
-    .pdf-head .co-sub { font-size: .75rem; opacity: .8; }
-    .pdf-no { text-align: right; }
-    .pdf-no .t { font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
-    .pdf-no .n { font-family: var(--font-head); font-weight: 800; font-size: 1.5rem; }
-    .pdf-body { padding: 1.5rem 2rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .pdf-meta { display: flex; gap: 1.5rem; }
-    .pdf-meta > div { flex: 1; padding: 1rem; background: #F1F1F6; border-radius: .5rem; }
-    .pdf-meta h5 { font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: #2A2277; margin-bottom: .5rem; font-family: var(--font-head); }
-    .pdf table { width: 100%; border-collapse: collapse; }
-    .pdf th { background: #0B0A14; color: #fff; text-align: left; padding: .5rem .75rem; font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; }
-    .pdf td { padding: .5rem .75rem; border-bottom: .0625rem solid #E2E2EC; vertical-align: top; }
-    .pdf tr { page-break-inside: avoid; }
-    .pdf .r { text-align: right; white-space: nowrap; }
-    .pdf .c { text-align: center; }
-    .pdf-totals { align-self: flex-end; width: 17rem; display: flex; flex-direction: column; gap: .375rem; page-break-inside: avoid; }
-    .pdf-totals p { display: flex; justify-content: space-between; }
-    .pdf-totals .g { background: #2A2277; color: #fff; padding: .75rem 1rem; border-radius: .5rem; font-family: var(--font-head); font-weight: 800; font-size: 1rem; }
-    .pdf-foot { font-size: .6875rem; color: #55556A; border-top: .0625rem solid #E2E2EC; padding-top: 1rem; page-break-inside: avoid; }
-
+    
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
   </style>
   <noscript><style>[data-sk]::after { display: none !important; } [data-sk] > * { visibility: visible !important; }</style></noscript>
 
-  <!-- html2pdf.js: generación directa de PDF en el navegador -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+    <!-- jsPDF: el PDF se dibuja directamente (texto vectorial, sin capturas de pantalla) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#cotizador">Ir al cotizador</a>
@@ -561,11 +536,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <a href="#" class="floating-wa" id="floatingWa" title="Escríbenos por WhatsApp" aria-label="Escríbenos por WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.89 1.02 1.04-3.8-.24-.39A9.95 9.95 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.62.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
-</a>
-
-<!-- Plantilla del PDF (fuera de pantalla) -->
-<div id="pdf-host" aria-hidden="true"><div class="pdf" id="pdf-sheet"></div></div>
-
+</a
 <script>
 /* ════════════════════════════════════════════════════════
    CONFIGURACIÓN
@@ -719,57 +690,113 @@ function validate() {
   return data;
 }
 
-/* ───────── PDF ───────── */
-function buildSheet(no, data) {
-  const today = new Date();
-  const fecha = today.toLocaleDateString('es-VE', { day: '2-digit', month: 'long', year: 'numeric' });
-  const rif = EMPRESA.rif ? ` · RIF ${esc(EMPRESA.rif)}` : '';
-  const rows = data.items.map((i, k) => `
-    <tr><td class="c">${k + 1}</td><td>${esc(i.p.n)}</td><td class="c">${i.qty}</td><td class="r">${money(i.p.p)}</td><td class="r">${money(i.sub)}</td></tr>`).join('');
-  $('#pdf-sheet').innerHTML = `
-    <div class="pdf-head">
-      <div><img src="${LOGO_PDF}" alt="Papelería" /><div class="co">${esc(EMPRESA.nombre)}</div><div class="co-sub">${esc(EMPRESA.ciudad)}${rif}</div></div>
-      <div class="pdf-no"><div class="t">Cotización</div><div class="n">${no}</div><div class="co-sub">${fecha}</div></div>
-    </div>
-    <div class="pdf-body">
-      <div class="pdf-meta">
-        <div><h5>Cliente</h5><strong>${esc($('#cName').value.trim())}</strong><br>
-          ${$('#cRif').value.trim() ? 'RIF/CI: ' + esc($('#cRif').value.trim()) + '<br>' : ''}
-          ${$('#cMail').value.trim() ? esc($('#cMail').value.trim()) + '<br>' : ''}
-          ${$('#cTel').value.trim() ? 'Tel: ' + esc($('#cTel').value.trim()) : ''}</div>
-        <div><h5>Condiciones</h5>Validez de la oferta: ${EMPRESA.validez}<br>Moneda: dólares (USD)<br>Contacto: ${esc(EMPRESA.tel)}</div>
-      </div>
-      <table>
-        <thead><tr><th class="c" style="width:2.5rem">#</th><th>Producto</th><th class="c" style="width:4.5rem">Cant.</th><th class="r" style="width:6rem">P. unit.</th><th class="r" style="width:6.5rem">Subtotal</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-      <div class="pdf-totals">
-        <p><span>Subtotal</span><strong>${money(data.sub)}</strong></p>
-        <p><span>IVA (${Math.round(IVA * 100)}%)</span><strong>${money(data.iva)}</strong></p>
-        <p class="g"><span>Total</span><span>${money(data.total)}</span></p>
-      </div>
-      <div class="pdf-foot">Los precios están sujetos a cambios según la disponibilidad de inventario. Esta cotización no constituye reserva de mercancía. Delivery gratuito en Barquisimeto y Acarigua.</div>
-    </div>`;
+* ───────── PDF (jsPDF, dibujado directo) ───────── */
+const clean = s => String(s || '').replace(/[^\x20-\x7E -ÿ]/g, '').trim();
+
+function buildPdf(jsPDF, no, data) {
+  const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+  const W = 210, M = 14, R = W - M, BOTTOM = 280;
+  const BLUE = [42, 34, 119], INK = [11, 10, 20], GRAY = [85, 85, 106];
+  const fecha = new Date().toLocaleDateString('es-VE', { day: '2-digit', month: 'long', year: 'numeric' });
+  const T = (s, x, y, o) => doc.text(String(s), x, y, o);
+  const color = c => doc.setTextColor(c[0], c[1], c[2]);
+  const font = (w, size) => { doc.setFont('helvetica', w); doc.setFontSize(size); };
+  const logoH = 44 * 576 / 2420;
+
+  // Cabecera azul
+  doc.setFillColor(...BLUE); doc.rect(0, 0, W, 38, 'F');
+  try { doc.addImage(LOGO_PDF, 'PNG', M, 9, 44, logoH); } catch (e) {}
+  color([255, 255, 255]);
+  font('bold', 11); T(clean(EMPRESA.nombre), M, 26);
+  font('normal', 8); T(clean(EMPRESA.ciudad) + (EMPRESA.rif ? ' - RIF ' + clean(EMPRESA.rif) : ''), M, 31.5);
+  font('normal', 8); T('COTIZACION', R, 13, { align: 'right' });
+  font('bold', 18);  T(no, R, 22, { align: 'right' });
+  font('normal', 8.5); T(fecha, R, 29, { align: 'right' });
+
+  // Cuadros: cliente y condiciones
+  const box = (x, title, lines) => {
+    doc.setFillColor(241, 241, 246); doc.roundedRect(x, 45, 88, 34, 2, 2, 'F');
+    color(BLUE); font('bold', 7); T(title, x + 4, 51);
+    color(INK); let y = 56.5;
+    lines.forEach((l, i) => {
+      font(i === 0 && title === 'CLIENTE' ? 'bold' : 'normal', 9);
+      doc.splitTextToSize(l, 80).slice(0, 2).forEach(s => { T(s, x + 4, y); y += 4.5; });
+    });
+  };
+  const cli = [clean($('#cName').value)];
+  if (clean($('#cRif').value))  cli.push('RIF/CI: ' + clean($('#cRif').value));
+  if (clean($('#cMail').value)) cli.push(clean($('#cMail').value));
+  if (clean($('#cTel').value))  cli.push('Tel: ' + clean($('#cTel').value));
+  box(M, 'CLIENTE', cli);
+  box(M + 94, 'CONDICIONES', ['Validez de la oferta: ' + EMPRESA.validez, 'Moneda: dólares (USD)', 'Contacto: ' + EMPRESA.tel]);
+
+  // Tabla
+  const col = { n: M + 3, prod: 24, qty: 134, unit: 166, sub: R };
+  const head = y => {
+    doc.setFillColor(...INK); doc.rect(M, y, R - M, 8, 'F');
+    color([255, 255, 255]); font('bold', 7.5);
+    T('#', col.n, y + 5.3); T('PRODUCTO', col.prod, y + 5.3);
+    T('CANT.', col.qty, y + 5.3, { align: 'center' });
+    T('P. UNIT.', col.unit, y + 5.3, { align: 'right' });
+    T('SUBTOTAL', col.sub - 2, y + 5.3, { align: 'right' });
+    return y + 8;
+  };
+  const newPage = () => {
+    doc.addPage();
+    doc.setFillColor(...BLUE); doc.rect(0, 0, W, 12, 'F');
+    color([255, 255, 255]); font('bold', 9); T('Cotización ' + no, M, 8);
+    return head(18);
+  };
+  let y = head(87);
+  data.items.forEach((it, k) => {
+    font('normal', 9);
+    const lines = doc.splitTextToSize(clean(it.p.n), 96);
+    const h = Math.max(7, lines.length * 4.2 + 3);
+    if (y + h > BOTTOM) y = newPage();
+    color(INK); font('normal', 9);
+    T(k + 1, col.n, y + 5);
+    lines.forEach((s, i) => T(s, col.prod, y + 5 + i * 4.2));
+    T(it.qty, col.qty, y + 5, { align: 'center' });
+    T(money(it.p.p), col.unit, y + 5, { align: 'right' });
+    T(money(it.sub), col.sub - 2, y + 5, { align: 'right' });
+    doc.setDrawColor(226, 226, 236); doc.line(M, y + h, R, y + h);
+    y += h;
+  });
+
+  // Totales
+  y += 6;
+  if (y + 46 > BOTTOM) y = newPage() + 4;
+  const x0 = 126;
+  color(INK); font('normal', 9.5);
+  T('Subtotal', x0, y + 4);                          font('bold', 9.5); T(money(data.sub), R, y + 4, { align: 'right' });
+  font('normal', 9.5); T('IVA (' + Math.round(IVA * 100) + '%)', x0, y + 10); font('bold', 9.5); T(money(data.iva), R, y + 10, { align: 'right' });
+  doc.setFillColor(...BLUE); doc.roundedRect(x0, y + 14, R - x0, 11, 2, 2, 'F');
+  color([255, 255, 255]); font('bold', 11); T('TOTAL', x0 + 4, y + 21.3); T(money(data.total), R - 4, y + 21.3, { align: 'right' });
+  color(GRAY); font('normal', 7.5);
+  doc.splitTextToSize('Los precios están sujetos a cambios según la disponibilidad de inventario. Esta cotización no constituye reserva de mercancía. Delivery gratuito en Barquisimeto y Acarigua.', R - M)
+     .forEach((s, i) => T(s, M, y + 33 + i * 3.6));
+
+  // Pie en todas las páginas
+  const n = doc.getNumberOfPages();
+  for (let i = 1; i <= n; i++) {
+    doc.setPage(i); color(GRAY); font('normal', 7);
+    T(clean(EMPRESA.nombre) + ' - Cotización ' + no, M, 289);
+    T('Página ' + i + ' de ' + n, R, 289, { align: 'right' });
+  }
+  return doc;
 }
 
-$('#qForm').addEventListener('submit', async e => {
+$('#qForm').addEventListener('submit', e => {
   e.preventDefault();
   const data = validate(); if (!data) return;
-  if (typeof html2pdf === 'undefined') { setMsg('No se pudo cargar el generador de PDF. Revisa tu conexión e inténtalo de nuevo.'); return; }
+  const jsPDF = window.jspdf && window.jspdf.jsPDF;
+  if (!jsPDF) { setMsg('No se pudo cargar el generador de PDF. Revisa tu conexión e inténtalo de nuevo.'); return; }
   const btn = $('#btnPdf'); btn.disabled = true; const label = btn.textContent; btn.textContent = 'Generando PDF…';
   const seq = readSeq() + 1, no = fmtNo(seq);
   try {
-    buildSheet(no, data);
-    const logo = $('#pdf-sheet img'); if (logo && !logo.complete) await new Promise(r => { logo.onload = logo.onerror = r; });
-    const safe = $('#cName').value.trim().replace(/[^\p{L}\p{N}]+/gu, '_').slice(0, 40);
-    await html2pdf().set({
-      margin: [0, 0, 10, 0],
-      filename: `Cotizacion_${no}_${safe}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', windowWidth: 794 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['css', 'legacy'], avoid: ['tr', '.pdf-totals', '.pdf-foot'] }
-    }).from($('#pdf-sheet')).save();
+    const doc = buildPdf(jsPDF, no, data);
+    const safe = clean($('#cName').value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9]+/g, '_').slice(0, 40) || 'Cliente';
+    doc.save(`Cotizacion_${no}_${safe}.pdf`);
     saveSeq(seq); refreshNumber();
     setMsg(`Cotización ${no} descargada.`, true);
     push('cotizacion_generada', { numero: no, total: data.total, items: data.items.length });
@@ -778,6 +805,8 @@ $('#qForm').addEventListener('submit', async e => {
     console.error(err); setMsg('Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
   } finally { btn.disabled = false; btn.textContent = label; }
 });
+
+
 
 $('#btnWa').addEventListener('click', () => {
   const data = validate(); if (!data) return;
