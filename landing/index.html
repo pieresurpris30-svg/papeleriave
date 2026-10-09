@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>papeleria _ve| Suministros de Oficina al Mayor – Barquisimeto</title>
-  <meta name="description" content="Suministros de oficina al mayor en Barquisimeto. Precios de importador, delivery gratuito y atención personalizada. Contacta por WhatsApp ahora." />
+  <meta name="theme-color" content="#2A2277" />
+  <title>papeleria _ve | Suministros de Oficina al Mayor – Barquisimeto</title>
+  <meta name="description" content="Suministros de oficina al mayor en Barquisimeto. Precios de importador, delivery gratuito, catálogo y cotizador en línea. Contacta por WhatsApp ahora." />
+  <link rel="icon" href="logo-original.jpg" />
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -23,1046 +26,792 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=26525302807089880&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-  <!-- Google Fonts -->
+
+<!-- Google Tag Manager (pega aquí tu contenedor GTM-XXXXXXX y descomenta) -->
+<script>window.dataLayer = window.dataLayer || [];</script>
+<!--
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+-->
+<!-- End Google Tag Manager -->
+
+  <!-- Fuentes modernas -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="logo-white.png" />
 
   <style>
-    /* ─── RESET & TOKENS ─────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ═════════ TOKENS ═════════ */
     :root {
-      --brand:        #281D88;
-      --brand-light:  #3828c0;
-      --brand-dark:   #1a1260;
-      --brand-glow:   rgba(40, 29, 136, 0.35);
-      --white:        #FFFFFF;
-      --off-white:    #F4F5FB;
-      --wa:           #25D366;
-      --wa-dark:      #1aab54;
-      --text-muted:   rgba(255,255,255,0.65);
-      --radius-lg:    20px;
-      --radius-xl:    32px;
-      --shadow-blue:  0 20px 60px rgba(40,29,136,0.45);
-      --font-head:    'Sora', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
+      /* Marca: azul, negro y blanco */
+      --blue:       #2A2277;   /* azul del logo */
+      --blue-deep:  #1B1550;
+      --blue-light: #5246D6;
+      --black:      #0B0A14;
+      --white:      #FFFFFF;
+      --ink-soft:   rgba(255,255,255,.72);
+      --line:       rgba(255,255,255,.16);
+
+      /* Espaciado: todo en rem (root = 16px) */
+      --gap: 1.5rem;
+      --r-sm: .5rem;
+      --r:    1rem;
+      --r-lg: 1.5rem;
+      --hair: .0625rem;
+
+      /* Escala tipográfica Major Third 1.250 */
+      --step--1: .8rem;
+      --step-0:  1rem;
+      --step-1:  1.25rem;
+      --step-2:  1.563rem;
+      --step-3:  1.953rem;
+      --step-4:  2.441rem;
+      --step-5:  3.052rem;
+
+      --font-head: 'Sora', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
-
+    /* ═════════ RESET ═════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 5rem; }
     body {
       font-family: var(--font-body);
-      background: var(--brand-dark);
+      font-size: var(--step-0);
+      line-height: 1.6;
+      background: var(--black);
       color: var(--white);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, input, select { font: inherit; color: inherit; }
+
+    h1, h2, h3, h4, h5 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -.02em; }
+    h1 { font-size: var(--step-4); font-weight: 800; }
+    h2 { font-size: var(--step-3); font-weight: 800; }
+    h3 { font-size: var(--step-1); font-weight: 700; }
+    h4 { font-size: var(--step-0); font-weight: 700; }
+    @media (min-width: 64rem) { h1 { font-size: var(--step-5); } h2 { font-size: var(--step-4); } h3 { font-size: var(--step-2); } }
+
+    .sr-only { position:absolute; width:.0625rem; height:.0625rem; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    .skip { position:absolute; left:1.5rem; top:-4rem; background:var(--white); color:var(--blue); padding:.5rem 1rem; border-radius:var(--r-sm); z-index:999; }
+    .skip:focus { top:1rem; }
+
+    /* ═════════ GRID PRINCIPAL ═════════
+       Móvil: 4 columnas · Tablet: 11 columnas · Escritorio: 12 columnas
+       Cada bloque define su ancho con --d (escritorio) y --t (tablet). */
+    .shell { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; }
+    .grid { display: grid; gap: var(--gap); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .col  { grid-column: 1 / -1; min-width: 0; }
+    @media (min-width: 40rem) and (max-width: 63.9375rem) {
+      .grid { grid-template-columns: repeat(11, minmax(0, 1fr)); }
+      .col  { grid-column: span var(--t, 11); }
+    }
+    @media (min-width: 64rem) {
+      .grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+      .col  { grid-column: span var(--d, 12); }
     }
 
-    /* ─── ANIMATED GRID BACKGROUND ──────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
+    section { padding-block: 4rem; position: relative; }
+    .eyebrow { font-size: var(--step--1); font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+
+    /* ═════════ SILUETAS GRISES DE CARGA ═════════ */
+    html:not(.ready) [data-sk] { position: relative; }
+    html:not(.ready) [data-sk] > * { visibility: hidden; }
+    html:not(.ready) [data-sk]::after {
+      content: ""; position: absolute; inset: 0; border-radius: var(--r);
+      background: linear-gradient(100deg, #b9bcc7 30%, #dcdee6 50%, #b9bcc7 70%) 0 0 / 200% 100%;
+      animation: shimmer 1.25s linear infinite;
     }
+    html:not(.ready) [data-sk="text"]::after { border-radius: var(--r-sm); }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+    .reveal { animation: rise .6s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: none; } }
 
-    body::after {
-      content: '';
-      position: fixed;
-      top: -40%;
-      left: -20%;
-      width: 80vw;
-      height: 80vw;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(56,40,192,0.25) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      animation: orb 12s ease-in-out infinite alternate;
+    /* ═════════ HEADER ═════════ */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(27,21,80,.9);
+      backdrop-filter: blur(1rem); -webkit-backdrop-filter: blur(1rem);
+      border-bottom: var(--hair) solid var(--line);
     }
+    .header-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gap); padding-block: 1rem; }
+    .brand { display: flex; align-items: center; gap: var(--gap); text-decoration: none; }
+    .brand img { height: 2rem; width: auto; }
+    .nav { display: flex; align-items: center; gap: var(--gap); font-size: var(--step--1); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .nav a { text-decoration: none; color: var(--ink-soft); transition: color .2s; }
+    .nav a:hover, .nav a:focus-visible { color: var(--white); }
+    .nav .nav-cta { color: var(--blue); background: var(--white); padding: .5rem 1rem; border-radius: 6.25rem; }
+    .nav .nav-cta:hover { color: var(--blue); filter: brightness(.92); }
 
-    @keyframes orb {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(15vw, 10vh) scale(1.15); }
+    /* ═════════ HERO · logo como fondo ═════════ */
+    .hero { background: var(--blue); overflow: hidden; padding-block: 4rem; isolation: isolate; }
+    .hero::before {          /* LOGO COMO FONDO (PNG 2420px: nítido en pantallas retina) */
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: url("logo-white.png") center / min(100%, 90rem) auto no-repeat;
+      opacity: .24;
     }
-
-    /* ─── LAYOUT ─────────────────────────────────────────── */
-    .wrapper {
-      position: relative;
-      z-index: 1;
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 0 20px;
+    .hero::after {           /* viñeta para dar lectura al texto */
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(ellipse at 50% 50%, transparent 35%, rgba(11,10,20,.55) 100%);
     }
+    @media (max-width: 39.9375rem) { .hero::before { background-size: 160% auto; opacity: .2; } }
+    .hero-grid { align-items: center; }
+    .hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap); }
+    .badge { display: inline-flex; align-items: center; gap: .5rem; font-size: var(--step--1); font-weight: 500; color: var(--ink-soft);
+      padding: .5rem 1rem; border: var(--hair) solid var(--line); border-radius: 6.25rem; background: rgba(255,255,255,.08); }
+    .badge-dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--white); box-shadow: 0 0 .75rem var(--white); animation: pulse 1.8s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: .45; transform: scale(.8); } }
+    .hero h1 .accent { display: block; color: var(--white); text-decoration: underline; text-decoration-thickness: .1875rem; text-underline-offset: .5rem; text-decoration-color: rgba(255,255,255,.45); }
+    .hero-sub { font-size: var(--step-1); color: var(--ink-soft); max-width: 32rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: var(--gap); }
 
-    section { padding: 60px 0; }
-
-    /* ─── HEADER ─────────────────────────────────────────── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      background: rgba(26, 18, 96, 0.88);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 14px 0;
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 1rem;
+      padding: 1rem 1.5rem; border-radius: var(--r); border: var(--hair) solid transparent;
+      font-family: var(--font-head); font-weight: 700; font-size: var(--step-0); text-decoration: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s, color .2s;
     }
+    .btn:hover { transform: translateY(-.125rem); }
+    .btn:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: .1875rem solid var(--white); outline-offset: .1875rem; }
+    .btn-white { background: var(--white); color: var(--blue); box-shadow: 0 .75rem 2rem rgba(0,0,0,.3); }
+    .btn-blue  { background: var(--blue); color: var(--white); box-shadow: 0 .75rem 2rem rgba(42,34,119,.45); }
+    .btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,.5); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); }
+    .btn-dark  { background: var(--black); color: var(--white); }
+    .btn-line  { background: transparent; color: var(--blue); border-color: var(--blue); }
+    .btn[disabled] { opacity: .55; cursor: wait; transform: none; }
+    .btn svg { flex-shrink: 0; }
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
+    /* Video */
+    .hero-video { display: flex; flex-direction: column; align-items: center; }
+    .reel {
+      position: relative; width: min(20rem, 100%); aspect-ratio: 9 / 16; border-radius: var(--r-lg); overflow: hidden;
+      background: var(--black); border: .125rem solid rgba(255,255,255,.25); box-shadow: 0 2rem 4rem rgba(0,0,0,.5);
     }
-
-    /* Logo mark */
-    .logo-mark {
-      width: 42px;
-      height: 42px;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .logo-mark svg { width: 100%; height: 100%; }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .logo-text span:first-child {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 17px;
-      letter-spacing: -0.3px;
-      color: var(--white);
-    }
-
-    .logo-text span:last-child {
-      font-family: var(--font-body);
-      font-weight: 300;
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    /* ─── HERO ───────────────────────────────────────────── */
-    .hero {
-      padding: 72px 0 52px;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .badge-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--wa);
-      box-shadow: 0 0 8px var(--wa);
+    .reel video { width: 100%; height: 100%; object-fit: cover; }
+    .unmute {
+      position: absolute; left: 50%; bottom: 4rem; transform: translateX(-50%);
+      display: flex; align-items: center; gap: .5rem; padding: .5rem 1rem; border: 0; border-radius: 6.25rem; cursor: pointer;
+      background: var(--white); color: var(--blue); font-weight: 700; font-size: var(--step--1); box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.4);
       animation: pulse 1.8s ease-in-out infinite;
     }
+    .unmute[hidden] { display: none; }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.6; transform: scale(0.85); }
+    /* ═════════ CATÁLOGO ═════════ */
+    .catalog { background: var(--black); }
+    .catalog-grid { align-items: center; }
+    .stack { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap); }
+    .stack p { color: var(--ink-soft); max-width: 34rem; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: var(--gap); }
+    .cat-card { display: flex; justify-content: center; }
+    .cat-cover {
+      position: relative; display: block; width: min(21rem, 100%); text-decoration: none; border-radius: var(--r);
+      overflow: hidden; background: var(--white); box-shadow: 0 0 0 var(--hair) var(--line), 0 2rem 4rem rgba(42,34,119,.55);
+      transition: transform .3s;
     }
+    .cat-cover:hover { transform: translateY(-.5rem) rotate(-1deg); }
+    .cat-cover img { width: 100%; height: auto; aspect-ratio: 0.773 / 1; object-fit: cover; }
+    .cat-tag { position: absolute; left: 1rem; bottom: 1rem; background: var(--blue); color: var(--white); font-family: var(--font-head); font-weight: 700; font-size: var(--step--1); padding: .5rem 1rem; border-radius: 6.25rem; }
 
-    h1 {
-      font-family: var(--font-head);
-      font-size: clamp(26px, 7vw, 40px);
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.8px;
-      animation: fadeUp 0.6s 0.1s ease both;
+    /* ═════════ BENEFICIOS ═════════ */
+    .benefits { background: var(--blue-deep); }
+    .section-head { display: flex; flex-direction: column; gap: var(--gap); margin-bottom: 3rem; }
+    .benefit { display: flex; flex-direction: column; gap: var(--gap); height: 100%; padding: 1.5rem; border: var(--hair) solid var(--line); border-radius: var(--r-lg); background: rgba(255,255,255,.04); transition: border-color .25s, background .25s, transform .25s; }
+    .benefit:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.08); transform: translateY(-.25rem); }
+    .benefit-icon { width: 3rem; height: 3rem; display: grid; place-items: center; border-radius: var(--r); background: var(--white); color: var(--blue); }
+    .benefit p { color: var(--ink-soft); font-size: var(--step-0); }
+
+    /* ═════════ COTIZADOR ═════════ */
+    .quote { background: var(--blue); }
+    .quote::before { content: ""; position: absolute; inset: 0; background: url("logo-white.png") center / min(100%, 70rem) auto no-repeat; opacity: .06; pointer-events: none; }
+    .quote .shell { position: relative; }
+    .q-card { background: var(--white); color: var(--black); border-radius: var(--r-lg); padding: 1.5rem; box-shadow: 0 2rem 5rem rgba(0,0,0,.35); display: flex; flex-direction: column; gap: var(--gap); }
+    @media (min-width: 40rem) { .q-card { padding: 3rem; } }
+    .q-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gap); padding-bottom: var(--gap); border-bottom: var(--hair) solid rgba(11,10,20,.14); }
+    .q-brand { display: flex; align-items: center; gap: var(--gap); }
+    .q-brand .q-logo { background: var(--blue); border-radius: var(--r-sm); padding: .5rem 1rem; }
+    .q-brand img { height: 1.75rem; width: auto; }
+    .q-brand small { display: block; color: rgba(11,10,20,.6); font-size: var(--step--1); line-height: 1.3; }
+    .q-no { text-align: right; }
+    .q-no span { display: block; font-size: var(--step--1); letter-spacing: .12em; text-transform: uppercase; color: rgba(11,10,20,.6); }
+    .q-no strong { font-family: var(--font-head); font-size: var(--step-2); color: var(--blue); }
+
+    .field { display: flex; flex-direction: column; gap: .5rem; }
+    .field label { font-size: var(--step--1); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(11,10,20,.65); }
+    .q-card input, .q-card select {
+      width: 100%; padding: .75rem 1rem; border-radius: var(--r-sm); border: var(--hair) solid rgba(11,10,20,.25); background: var(--white); color: var(--black); font-size: var(--step-0);
     }
+    .q-card input:focus, .q-card select:focus { border-color: var(--blue); box-shadow: 0 0 0 .1875rem rgba(42,34,119,.2); outline: none; }
+    .q-card input[readonly] { background: #F1F1F6; }
+    .invalid { border-color: #C62828 !important; }
 
-    h1 .accent {
-      background: linear-gradient(135deg, #7B9FFF, #FFFFFF 60%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .q-tools { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--gap); }
+    .q-tools .field { flex: 1 1 18rem; }
+    .q-count { font-size: var(--step--1); color: rgba(11,10,20,.6); }
 
-    .hero-sub {
-      margin-top: 18px;
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text-muted);
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fadeUp 0.6s 0.2s ease both;
-    }
+    .q-rows { display: flex; flex-direction: column; gap: var(--gap); }
+    .q-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--gap); padding: 1rem; border: var(--hair) solid rgba(11,10,20,.14); border-radius: var(--r); background: #F7F7FB; }
+    .q-row .f-prod { flex: 3 1 18rem; }
+    .q-row .f-qty  { flex: 0 0 9rem; }
+    .q-row .f-unit, .q-row .f-sub { flex: 1 1 7rem; }
+    .stepper { display: flex; }
+    .stepper button { flex: 0 0 2.75rem; border: var(--hair) solid rgba(11,10,20,.25); background: var(--white); cursor: pointer; font-weight: 700; font-size: var(--step-1); line-height: 1; }
+    .stepper button:first-child { border-radius: var(--r-sm) 0 0 var(--r-sm); }
+    .stepper button:last-child  { border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+    .stepper input { text-align: center; border-radius: 0; min-width: 0; padding-inline: .5rem; }
+    .stepper button:hover { background: #ECECF6; }
+    .q-row .rm { flex: 0 0 2.75rem; height: 2.75rem; border-radius: var(--r-sm); border: var(--hair) solid rgba(11,10,20,.25); background: var(--white); cursor: pointer; font-size: var(--step-1); line-height: 1; }
+    .q-row .rm:hover { background: #FDECEC; border-color: #C62828; color: #C62828; }
+    .lock { display: inline-flex; align-items: center; gap: .25rem; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .q-bottom { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--gap); }
+    .q-note { flex: 1 1 16rem; font-size: var(--step--1); color: rgba(11,10,20,.6); }
+    .totals { flex: 0 1 22rem; display: flex; flex-direction: column; gap: .5rem; width: 100%; }
+    .totals p { display: flex; justify-content: space-between; gap: var(--gap); }
+    .totals .grand { padding: 1rem; border-radius: var(--r); background: var(--blue); color: var(--white); font-family: var(--font-head); font-weight: 800; font-size: var(--step-1); }
+    .q-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap); }
+    .q-msg { font-size: var(--step--1); font-weight: 700; color: #C62828; min-height: 1.4rem; }
+    .q-msg.ok { color: #1B7F3B; }
 
-    /* ─── VIDEO REEL ─────────────────────────────────────── */
-    .video-section {
-      padding: 0 0 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    /* ═════════ CTA / CONTACTO ═════════ */
+    .cta { background: var(--black); }
+    @media (min-width: 64rem) { .cta-col { grid-column: 2 / span 10; } }
+    .cta-card { padding: 1.5rem; border: var(--hair) solid var(--line); border-radius: var(--r-lg); background: linear-gradient(145deg, rgba(42,34,119,.55), rgba(255,255,255,.03)); text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--gap); }
+    @media (min-width: 40rem) { .cta-card { padding: 3rem; } }
+    .cta-card p { color: var(--ink-soft); max-width: 36rem; }
+    .capture { display: flex; flex-wrap: wrap; gap: var(--gap); width: 100%; max-width: 40rem; text-align: left; }
+    .capture .field { flex: 1 1 14rem; }
+    .capture label { color: var(--ink-soft); }
+    .capture input { width: 100%; padding: .75rem 1rem; border-radius: var(--r-sm); border: var(--hair) solid var(--line); background: rgba(255,255,255,.08); color: var(--white); }
+    .capture input::placeholder { color: rgba(255,255,255,.4); }
+    .capture input:focus { border-color: var(--white); outline: none; }
+    .privacy { font-size: var(--step--1); color: rgba(255,255,255,.5); }
 
-    .reel-wrapper {
-      position: relative;
-      width: min(320px, 88vw);
-      aspect-ratio: 9/16;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      background: linear-gradient(145deg, #1f176a, #281D88);
-      border: 2px solid rgba(255,255,255,0.12);
-      box-shadow: var(--shadow-blue), 0 0 0 1px rgba(255,255,255,0.05);
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
+    .trust { background: var(--black); border-top: var(--hair) solid var(--line); padding-block: 3rem; }
+    .trust-items { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); }
+    .trust-item { display: flex; align-items: center; gap: .5rem; font-size: var(--step--1); color: var(--ink-soft); }
 
-    .reel-inner {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 24px;
-    }
+    footer { background: var(--black); border-top: var(--hair) solid var(--line); padding-block: 2rem; text-align: center; font-size: var(--step--1); color: rgba(255,255,255,.55); }
+    footer strong { color: var(--white); }
 
-    /* Placeholder avatar animation */
-    .avatar-circle {
-      width: 88px; height: 88px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand-light), #6B57FF);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 12px rgba(107,87,255,0.15);
-      animation: float 3s ease-in-out infinite;
-    }
+    .floating-wa { position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 200; width: 3.5rem; height: 3.5rem; display: grid; place-items: center; border-radius: 50%; background: var(--white); color: var(--blue); box-shadow: 0 .5rem 1.75rem rgba(0,0,0,.5); transition: transform .2s; }
+    .floating-wa:hover { transform: scale(1.08); }
+    .floating-wa::before { content: ""; position: absolute; inset: -.25rem; border-radius: 50%; border: .125rem solid rgba(255,255,255,.55); animation: ping 2s ease-out infinite; }
+    @keyframes ping { to { transform: scale(1.6); opacity: 0; } }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-8px); }
-    }
+    /* ═════════ PLANTILLA PDF (fuera de pantalla) ═════════ */
+    #pdf-host { position: fixed; left: -200vw; top: 0; width: 49.625rem; }
+    .pdf { width: 49.625rem; background: #fff; color: #0B0A14; font-family: var(--font-body); font-size: .8125rem; line-height: 1.45; }
+    .pdf-head { background: #2A2277; color: #fff; padding: 1.75rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+    .pdf-head img { height: 2.25rem; width: auto; }
+    .pdf-head .co { font-family: var(--font-head); font-weight: 800; font-size: 1rem; margin-top: .5rem; }
+    .pdf-head .co-sub { font-size: .75rem; opacity: .8; }
+    .pdf-no { text-align: right; }
+    .pdf-no .t { font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
+    .pdf-no .n { font-family: var(--font-head); font-weight: 800; font-size: 1.5rem; }
+    .pdf-body { padding: 1.5rem 2rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .pdf-meta { display: flex; gap: 1.5rem; }
+    .pdf-meta > div { flex: 1; padding: 1rem; background: #F1F1F6; border-radius: .5rem; }
+    .pdf-meta h5 { font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: #2A2277; margin-bottom: .5rem; font-family: var(--font-head); }
+    .pdf table { width: 100%; border-collapse: collapse; }
+    .pdf th { background: #0B0A14; color: #fff; text-align: left; padding: .5rem .75rem; font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; }
+    .pdf td { padding: .5rem .75rem; border-bottom: .0625rem solid #E2E2EC; vertical-align: top; }
+    .pdf tr { page-break-inside: avoid; }
+    .pdf .r { text-align: right; white-space: nowrap; }
+    .pdf .c { text-align: center; }
+    .pdf-totals { align-self: flex-end; width: 17rem; display: flex; flex-direction: column; gap: .375rem; page-break-inside: avoid; }
+    .pdf-totals p { display: flex; justify-content: space-between; }
+    .pdf-totals .g { background: #2A2277; color: #fff; padding: .75rem 1rem; border-radius: .5rem; font-family: var(--font-head); font-weight: 800; font-size: 1rem; }
+    .pdf-foot { font-size: .6875rem; color: #55556A; border-top: .0625rem solid #E2E2EC; padding-top: 1rem; page-break-inside: avoid; }
 
-    .avatar-circle svg { width: 44px; height: 44px; fill: white; }
-
-    .reel-label {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-align: center;
-      letter-spacing: 0.3px;
-    }
-
-    .reel-label strong { color: var(--white); display: block; font-size: 15px; margin-bottom: 4px; }
-
-    /* Instruction for replacing */
-    .reel-hint {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: rgba(37,211,102,0.15);
-      border: 1px solid rgba(37,211,102,0.4);
-      color: var(--wa);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      padding: 4px 9px;
-      border-radius: 100px;
-    }
-
-    /* Scan lines decorative */
-    .reel-wrapper::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,0.03) 3px,
-        rgba(0,0,0,0.03) 4px
-      );
-      pointer-events: none;
-    }
-
-    /* HOW TO: Replace video */
-    .video-replace-tip {
-      margin-top: 16px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      max-width: 280px;
-      line-height: 1.5;
-    }
-
-    /* ─── BENEFITS ───────────────────────────────────────── */
-    .benefits {
-      padding: 56px 0;
-    }
-
-    .section-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .benefits-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .benefit-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: var(--radius-lg);
-      padding: 22px 24px;
-      transition: border-color 0.25s, background 0.25s, transform 0.25s;
-      cursor: default;
-    }
-
-    .benefit-card:hover {
-      border-color: rgba(107,87,255,0.4);
-      background: rgba(107,87,255,0.07);
-      transform: translateX(4px);
-    }
-
-    .benefit-icon {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      background: linear-gradient(135deg, rgba(40,29,136,0.8), rgba(107,87,255,0.4));
-      border: 1px solid rgba(107,87,255,0.3);
-    }
-
-    .benefit-text h3 {
-      font-family: var(--font-head);
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    .benefit-text p {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    /* ─── FORM + CTA ─────────────────────────────────────── */
-    .cta-section {
-      padding: 56px 0 72px;
-    }
-
-    .cta-card {
-      background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-xl);
-      padding: 40px 32px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-card::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(37,211,102,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-card h2 {
-      font-family: var(--font-head);
-      font-size: clamp(20px, 5vw, 26px);
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.4px;
-      margin-bottom: 10px;
-    }
-
-    .cta-card p {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      line-height: 1.55;
-    }
-
-    /* Form */
-    .capture-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .field-group {
-      position: relative;
-    }
-
-    .field-group label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 7px;
-      text-align: left;
-    }
-
-    .field-group input {
-      width: 100%;
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(255,255,255,0.12);
-      border-radius: 12px;
-      padding: 13px 16px;
-      font-family: var(--font-body);
-      font-size: 15px;
-      color: var(--white);
-      outline: none;
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    }
-
-    .field-group input::placeholder { color: rgba(255,255,255,0.25); }
-
-    .field-group input:focus {
-      border-color: rgba(107,87,255,0.6);
-      background: rgba(255,255,255,0.08);
-      box-shadow: 0 0 0 3px rgba(107,87,255,0.15);
-    }
-
-    /* WhatsApp button */
-    .btn-wa {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 11px;
-      width: 100%;
-      background: linear-gradient(135deg, var(--wa) 0%, #20c25a 100%);
-      color: #fff;
-      font-family: var(--font-head);
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.2px;
-      padding: 17px 24px;
-      border-radius: 14px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
-      box-shadow: 0 8px 32px rgba(37,211,102,0.35);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-wa::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .btn-wa:hover {
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 14px 40px rgba(37,211,102,0.5);
-      filter: brightness(1.05);
-    }
-
-    .btn-wa:active {
-      transform: translateY(0) scale(0.99);
-    }
-
-    .btn-wa svg { flex-shrink: 0; }
-
-    .privacy-note {
-      margin-top: 14px;
-      font-size: 11.5px;
-      color: rgba(255,255,255,0.3);
-      line-height: 1.5;
-    }
-
-    .privacy-note a { color: rgba(255,255,255,0.5); text-decoration: underline; }
-
-    /* ─── TRUST BAR ──────────────────────────────────────── */
-    .trust-bar {
-      padding: 32px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      text-align: center;
-    }
-
-    .trust-items {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.45);
-    }
-
-    .trust-item svg { opacity: 0.5; }
-
-    /* ─── FOOTER ─────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 28px 0;
-      text-align: center;
-      font-size: 12px;
-      color: rgba(255,255,255,0.25);
-    }
-
-    footer strong { color: rgba(255,255,255,0.5); }
-
-    /* ─── FLOATING WA BUTTON ─────────────────────────────── */
-    .floating-wa {
-      position: fixed;
-      bottom: 28px;
-      right: 24px;
-      z-index: 200;
-      width: 58px; height: 58px;
-      border-radius: 50%;
-      background: var(--wa);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 28px rgba(37,211,102,0.5);
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: waIn 0.8s 1s ease both;
-    }
-
-    @keyframes waIn {
-      from { opacity: 0; transform: scale(0.5) rotate(-15deg); }
-      to   { opacity: 1; transform: scale(1) rotate(0deg); }
-    }
-
-    .floating-wa:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 36px rgba(37,211,102,0.65);
-    }
-
-    .floating-wa::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 2px solid rgba(37,211,102,0.4);
-      animation: ping 2s ease-in-out infinite;
-    }
-
-    @keyframes ping {
-      0%   { transform: scale(1); opacity: 0.6; }
-      100% { transform: scale(1.6); opacity: 0; }
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width: 400px) {
-      .cta-card { padding: 30px 20px; }
-    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
   </style>
-<!-- Librería html2pdf.js para generación directa de PDF en cliente -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <noscript><style>[data-sk]::after { display: none !important; } [data-sk] > * { visibility: visible !important; }</style></noscript>
+
+  <!-- html2pdf.js: generación directa de PDF en el navegador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#cotizador">Ir al cotizador</a>
 
-<!-- ── HEADER ─────────────────────────────────────────── -->
-<header>
-  <div class="wrapper">
-    <div class="header-inner">
+<!-- Google Tag Manager (noscript) — descomenta junto al bloque del <head>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+-->
 
-      <!-- Logo SVG Mark (reemplaza con tu <img src="logo.png"> si tienes el archivo) -->
-      <div class="logo-mark">
-      <img src="logo.png" height="42"alt="logo">
-      </div>
-
-      <div class="logo-text">
-        <span>Papeeria_ve</span>
-        <span>soluciones en papeleria</span>
-      </div>
+<!-- ═════════ HEADER ═════════ -->
+<header class="site-header">
+  <div class="shell">
+    <div class="header-in">
+      <a class="brand" href="#inicio" aria-label="papeleria_ve — inicio">
+        <img src="logo-white.png" width="134" height="32" alt="Papelería" />
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#cotizador">Cotizador</a>
+        <a href="#contacto" class="nav-cta">Contacto</a>
+      </nav>
     </div>
   </div>
 </header>
 
+<main id="inicio">
 
-<!-- ── HERO ───────────────────────────────────────────── -->
+<!-- ═════════ HERO ═════════ -->
 <section class="hero">
-  <div class="wrapper">
+  <div class="shell">
+    <div class="grid hero-grid">
 
-    <div class="badge">
-      <div class="badge-dot"></div>
-      Disponible ahora · Barquisimeto &amp; Acarigua
+      <div class="col hero-text" style="--d:7;--t:11">
+        <div class="badge" data-sk="text"><span class="badge-dot"></span><span>Disponible ahora · Barquisimeto &amp; Acarigua</span></div>
+        <h1 data-sk="text">
+          Suministros de Oficina
+          <span class="accent">al Mayor en Barquisimeto</span>
+          De la pantalla a tu escritorio en tiempo récord
+        </h1>
+        <p class="hero-sub" data-sk="text">Importamos directamente para que tu empresa pague menos, reciba más rápido y nunca se quede sin insumos.</p>
+        <div class="hero-actions" data-sk="text">
+          <a class="btn btn-white" href="#cotizador">Cotizar ahora</a>
+          <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
+        </div>
+      </div>
+
+      <div class="col hero-video" style="--d:5;--t:11">
+        <div class="reel" data-sk>
+          <video id="avatar" autoplay loop playsinline controls controlslist="nodownload" preload="auto" poster="avatar-poster.jpg" aria-label="Video de presentación de papeleria_ve">
+            <source src="avatar.mp4" type="video/mp4" />
+            Tu navegador no soporta la reproducción de video.
+          </video>
+          <button class="unmute" id="unmute" type="button" hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+            Activar sonido
+          </button>
+        </div>
+      </div>
+
     </div>
-
-    <h1>
-      Suministros de Oficina<br>
-      <span class="accent">al Mayor en Barquisimeto:</span><br>
-      De la pantalla a tu escritorio<br>en tiempo récord
-    </h1>
-
-    <p class="hero-sub">
-      Importamos directamente para que tu empresa pague menos, reciba más rápido y nunca se quede sin insumos.
-    </p>
-
   </div>
 </section>
 
-
-<!-- ── VIDEO REEL ──────────────────────────────────────── -->
-<div class="video-section">
-  <div class="wrapper" style="display:flex;flex-direction:column;align-items:center;">
-
-    <div class="reel-wrapper">
-      <video controls autoplay loop muted  width="100% 
-  <source src="Avatar with voiceover_20260403123450 - copia.mp4" type="video/mp4">
-  Tu navegador no soporta la reproducción de video.
-</video>
-    </div>
-      <!--
-        ══════════════════════════════════════════════════
-        INSTRUCCIONES PARA INSERTAR TU VIDEO:
-        1. Sube tu video (MP4 recomendado) junto a este HTML.
-        2. Reemplaza TODO el <div class="reel-inner">...</div>
-           con la siguiente etiqueta:
-
-           <video
-             autoplay muted loop playsinline
-             style="width:100%;height:100%;object-fit:cover;"
-             src="tu-video.mp4">
-           </video>
-
-        También puedes incrustar un iframe de Instagram/YouTube Shorts
-        con width="100%" height="100%" y frameborder="0".
-        ══════════════════════════════════════════════════
-      -->
-      <div class="reel-inner">
-        <div class="avatar-circle">
-          <!-- Icono persona -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-          </svg>
-        </div>
-        <div class="reel-label">
-          <strong>Tu Asesor de IA</strong>
-          Explica nuestros productos,<br>precios y disponibilidad
+<!-- ═════════ CATÁLOGO ═════════ -->
+<section class="catalog" id="catalogo">
+  <div class="shell">
+    <div class="grid catalog-grid">
+      <div class="col stack" style="--d:6;--t:5" data-sk>
+        <p class="eyebrow">Catálogo</p>
+        <h2>Todo en artículos escolares y de oficina</h2>
+        <p>Consulta el catálogo completo con fotos y precios. Cuando sepas qué necesitas, pásalo directo al cotizador y recibe tu presupuesto en PDF.</p>
+        <div class="btn-row">
+          <a class="btn btn-white" href="catalogo.pdf" target="_blank" rel="noopener" data-track="catalogo_abrir">Abrir catálogo (PDF)</a>
+          <a class="btn btn-ghost" href="#cotizador">Ir al cotizador</a>
         </div>
       </div>
-      <div class="reel-hint">VIDEO</div>
+      <div class="col cat-card" style="--d:6;--t:6" data-sk>
+        <a class="cat-cover" href="catalogo.pdf" target="_blank" rel="noopener" aria-label="Abrir el catálogo en PDF" data-track="catalogo_abrir">
+          <img src="catalogo-portada.jpg" width="850" height="1100" loading="lazy" alt="Portada del catálogo de papelería" />
+          <span class="cat-tag">Ver catálogo →</span>
+        </a>
+      </div>
     </div>
-
-    <p class="video-replace-tip">
-      ↑ Inserta aquí el video de tu avatar de IA siguiendo las instrucciones en el código fuente.
-    </p>
-
   </div>
-</div>
+</section>
 
-
-<!-- ── BENEFITS ────────────────────────────────────────── -->
+<!-- ═════════ BENEFICIOS ═════════ -->
 <section class="benefits">
-  <div class="wrapper">
-
-    <p class="section-eyebrow">¿Por qué elegirnos?</p>
-
-    <div class="benefits-grid">
-
-      <div class="benefit-card">
-        <div class="benefit-icon">💰</div>
-        <div class="benefit-text">
-          <h3>Precios de Importador</h3>
-          <p>Compramos en volumen directamente del fabricante. Sin intermediarios. El ahorro llega a tu empresa.</p>
-        </div>
+  <div class="shell">
+    <div class="section-head" data-sk="text">
+      <p class="eyebrow">¿Por qué elegirnos?</p>
+      <h2>Compra al mayor, sin vueltas</h2>
+    </div>
+    <div class="grid">
+      <div class="col" style="--d:4;--t:4" data-sk>
+        <article class="benefit">
+          <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Precios de importador</h3>
+          <p>Compramos en volumen directamente del fabricante. Sin intermediarios: el ahorro llega a tu empresa.</p>
+        </article>
       </div>
-
-      <div class="benefit-card">
-        <div class="benefit-icon">🚚</div>
-        <div class="benefit-text">
-          <h3>Delivery Gratuito</h3>
+      <div class="col" style="--d:4;--t:4" data-sk>
+        <article class="benefit">
+          <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <h3>Delivery gratuito</h3>
           <p>Cubrimos Barquisimeto y Acarigua sin costo adicional. Tu pedido llega a la puerta de tu oficina.</p>
-        </div>
+        </article>
       </div>
-
-      <div class="benefit-card">
-        <div class="benefit-icon">🤝</div>
-        <div class="benefit-text">
-          <h3>Atención Personalizada</h3>
+      <div class="col" style="--d:4;--t:3" data-sk>
+        <article class="benefit">
+          <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>Atención personalizada</h3>
           <p>Un asesor humano responde tu WhatsApp. Cotizaciones a medida, sin bots genéricos.</p>
-        </div>
+        </article>
       </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- ── CTA + FORM ──────────────────────────────────────── -->
-<section class="cta-section">
-  <div class="wrapper">
-    <div class="cta-card">
-
-      <h2>¿Listo para cotizar?<br>Escríbenos ahora 🚀</h2>
-      <p>Déjanos tu nombre y correo para enviarte el catálogo actualizado y conectarte con un asesor en menos de 5 minutos.</p>
-
-      <!-- Capture form: name + email before WhatsApp redirect -->
-      <div class="capture-form" id="captureForm">
-
-        <div class="field-group">
-          <label for="nombre">Tu nombre</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Ej: Carlos Martínez" autocomplete="name" required />
+<!-- ═════════ COTIZADOR ═════════ -->
+<section class="quote" id="cotizador">
+  <div class="shell">
+    <div class="grid">
+      <div class="col" style="--d:12;--t:11">
+        <div class="section-head" style="color:var(--white)" data-sk="text">
+          <p class="eyebrow">Cotizador en línea</p>
+          <h2>Arma tu cotización y descárgala en PDF</h2>
         </div>
-
-        <div class="field-group">
-          <label for="correo">Correo electrónico</label>
-          <input type="email" id="correo" name="correo" placeholder="carlos@empresa.com" autocomplete="email" required />
-        </div>
-
       </div>
 
-      <!-- Main WhatsApp CTA -->
-      <a href="#" class="btn-wa" id="waBtn" onclick="handleWA(event)">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.89 1.02 1.04-3.8-.24-.39A9.95 9.95 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.62.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z" fill="white"/>
-        </svg>
-        Consultar Disponibilidad por WhatsApp
-      </a>
+      <div class="col" style="--d:12;--t:11" data-sk>
+        <form class="q-card" id="qForm" novalidate>
 
-      <p class="privacy-note">
-        🔒 Tus datos son confidenciales. No hacemos spam.<br>
-        Al continuar, aceptas nuestra <a href="#">política de privacidad</a>.
-      </p>
+          <div class="q-top">
+            <div class="q-brand">
+              <div class="q-logo"><img src="logo-white.png" width="117" height="28" alt="Papelería" /></div>
+              <div><strong>Inversiones Soluciones Papeleras, C.A.</strong><small>Barquisimeto, Lara · Validez de la oferta: 15 días</small></div>
+            </div>
+            <div class="q-no"><span>Cotización Nº</span><strong id="qNumber">ISP-000001</strong></div>
+          </div>
 
+          <div class="grid" style="gap:var(--gap)">
+            <div class="col field" style="--d:5;--t:6"><label for="cName">Cliente / Razón social *</label><input id="cName" autocomplete="organization" placeholder="Ej. Inversiones Alfa C.A." required /></div>
+            <div class="col field" style="--d:3;--t:5"><label for="cRif">RIF / Cédula</label><input id="cRif" autocomplete="off" placeholder="J-12345678-9" /></div>
+            <div class="col field" style="--d:4;--t:5"><label for="cTel">Teléfono / WhatsApp</label><input id="cTel" type="tel" autocomplete="tel" placeholder="0412-0000000" /></div>
+            <div class="col field" style="--d:12;--t:6"><label for="cMail">Correo electrónico</label><input id="cMail" type="email" autocomplete="email" placeholder="compras@empresa.com" /></div>
+          </div>
+
+          <div class="q-tools">
+            <div class="field">
+              <label for="qFilter">Buscar producto en la lista</label>
+              <input id="qFilter" type="search" placeholder="Ej. resma, boligrafo, carpeta…" autocomplete="off" />
+            </div>
+            <p class="q-count" id="qCount"></p>
+          </div>
+
+          <div class="q-rows" id="qRows" aria-live="polite"></div>
+
+          <div class="q-actions">
+            <button type="button" class="btn btn-line" id="addRow">+ Añadir otro producto</button>
+          </div>
+
+          <div class="q-bottom">
+            <p class="q-note">Los precios están precargados en dólares (USD) y no se pueden modificar. Pueden variar según disponibilidad de inventario. IVA incluido en el cálculo según la tasa vigente.</p>
+            <div class="totals">
+              <p><span>Subtotal</span><strong id="tSub">$0.00</strong></p>
+              <p><span>IVA (<span id="tRate">16</span>%)</span><strong id="tIva">$0.00</strong></p>
+              <p class="grand"><span>Total</span><span id="tTot">$0.00</span></p>
+            </div>
+          </div>
+
+          <p class="q-msg" id="qMsg" role="alert"></p>
+          <div class="q-actions">
+            <button type="submit" class="btn btn-blue" id="btnPdf">Generar y descargar cotización (PDF)</button>
+            <button type="button" class="btn btn-line" id="btnWa">Enviar por WhatsApp</button>
+            <button type="reset" class="btn btn-line" id="btnReset">Limpiar</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ═════════ CONTACTO ═════════ -->
+<section class="cta" id="contacto">
+  <div class="shell">
+    <div class="grid">
+      <div class="col cta-col" data-sk>
+        <div class="cta-card">
+          <h2>¿Listo para cotizar?<br />Escríbenos ahora</h2>
+          <p>Déjanos tu nombre y correo para enviarte el catálogo actualizado y conectarte con un asesor en menos de 5 minutos.</p>
+          <div class="capture">
+            <div class="field"><label for="nombre">Tu nombre</label><input type="text" id="nombre" placeholder="Ej: Carlos Martínez" autocomplete="name" required /></div>
+            <div class="field"><label for="correo">Correo electrónico</label><input type="email" id="correo" placeholder="carlos@empresa.com" autocomplete="email" required /></div>
+          </div>
+          <a href="#" class="btn btn-white" id="waBtn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.89 1.02 1.04-3.8-.24-.39A9.95 9.95 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.62.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+            Consultar disponibilidad por WhatsApp
+          </a>
+          <p class="privacy">Tus datos son confidenciales. No hacemos spam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ── TRUST BAR ───────────────────────────────────────── -->
-<div class="trust-bar">
-  <div class="wrapper">
+<div class="trust">
+  <div class="shell">
     <div class="trust-items">
-      <div class="trust-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-        Empresa venezolana registrada
-      </div>
-      <div class="trust-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-        Respuesta en &lt; 5 minutos
-      </div>
-      <div class="trust-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
-        +500 empresas satisfechas
-      </div>
+      <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Empresa venezolana registrada</div>
+      <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>Respuesta en &lt; 5 minutos</div>
+      <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>+500 empresas satisfechas</div>
     </div>
   </div>
 </div>
 
+</main>
 
-<!-- ── FOOTER ──────────────────────────────────────────── -->
 <footer>
-  <div class="wrapper">
-    <p>© 2025 <strong>PapelCorp Venezuela</strong> · Barquisimeto, Lara · Todos los derechos reservados.</p>
-  </div>
+  <div class="shell"><p>© <span id="yr">2026</span> <strong>Inversiones Soluciones Papeleras, C.A.</strong> · Barquisimeto, Lara · Todos los derechos reservados.</p></div>
 </footer>
 
-
-<!-- ── FLOATING WA BUTTON ──────────────────────────────── -->
-<a href="#" class="floating-wa" id="floatingWa" title="Escríbenos por WhatsApp" onclick="openWA(event)">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.89 1.02 1.04-3.8-.24-.39A9.95 9.95 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.62.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/>
-  </svg>
+<a href="#" class="floating-wa" id="floatingWa" title="Escríbenos por WhatsApp" aria-label="Escríbenos por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.63A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.23-1.44l-.37-.22-3.89 1.02 1.04-3.8-.24-.39A9.95 9.95 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.62.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
 </a>
 
+<!-- Plantilla del PDF (fuera de pantalla) -->
+<div id="pdf-host" aria-hidden="true"><div class="pdf" id="pdf-sheet"></div></div>
 
-<!-- ── SCRIPTS ──────────────────────────────────────────── -->
 <script>
-  // ══════════════════════════════════════════
-  // CONFIGURACIÓN – edita estos valores
-  // ══════════════════════════════════════════
-  const WA_NUMBER  = '584121522808'; // Número con código de país, sin + ni espacios
-  const WA_MESSAGE = 'Hola! Me interesa cotizar suministros de oficina al mayor. ¿Pueden ayudarme?';
-  // ══════════════════════════════════════════
+/* ════════════════════════════════════════════════════════
+   CONFIGURACIÓN
+   ════════════════════════════════════════════════════════ */
+const WA_NUMBER  = '584121522808';          // país + número, sin + ni espacios
+const WA_MESSAGE = 'Hola! Me interesa cotizar suministros de oficina al mayor. ¿Pueden ayudarme?';
+const EMPRESA = Object.freeze({
+  nombre: 'Inversiones Soluciones Papeleras, C.A.',
+  rif: '',                                  // ← coloca aquí el RIF de la empresa (aparece en el PDF si lo llenas)
+  ciudad: 'Barquisimeto, Lara · Acarigua, Portuguesa',
+  tel: '0412-152.28.08',
+  prefijo: 'ISP-',                          // numeración: ISP-000001, ISP-000002…
+  validez: '15 días continuos'
+});
+const IVA = 0.16;                           // tasa de IVA
+const LOGO_PDF = 'data:image/png;base64,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';
 
-  function buildWaURL(extra) {
-    const msg = encodeURIComponent(WA_MESSAGE + (extra || ''));
-    return `https://wa.me/${WA_NUMBER}?text=${msg}`;
-  }
+/* Productos y precios precargados desde el catálogo. Congelados: el cliente solo puede elegirlos. */
+const PRODUCTOS = Object.freeze([[1,"Acetato Lamina",2.5],[2,"Acordeon Carta",7.0],[3,"Acordeon Giro",7.0],[4,"Acordeon Plastico",8.11],[5,"Acuarela",2.35],[6,"Agenda Estampada Mediana",3.5],[7,"Agenda Estampada Pequeña",3.0],[8,"Agenda Permanente",4.0],[9,"Agenda Unicolor",5.0],[10,"Alfiler Tipo Barril",0.9],[11,"Almohadilla Dactilar",0.8],[12,"Anime",2.0],[13,"Archi Practic",4.0],[14,"Archivador Lomo Ancho",2.23],[15,"Bandeja Traslucida",8.0],[16,"Barra de Silicon Fina",0.11],[17,"Barra de Silicon Gruesa",0.24],[18,"Block Cuadriculado",1.05],[19,"Block de Construccion",0.75],[20,"Block de Dibujo",1.85],[21,"Block de Papel Surtido",4.0],[22,"Block de Raya Carta",1.05],[23,"Block Lustrillo",0.75],[24,"Block Mandala",1.5],[25,"Block Milimetrado",0.7],[26,"Block Rotulado DIN A4",0.7],[27,"Block Taquigrafia",1.5],[28,"Boligrafo Bic",0.36],[29,"Boligrafo Borrable",0.7],[30,"Boligrafo de Colores",0.7],[31,"Boligrafo Ink 100",0.36],[32,"Boligrafo Metalizado",1.0],[33,"Boligrafo Multicolor Pointer",0.54],[34,"Boligrafo Rojo",0.3],[35,"Boligrafo Sencillo",0.16],[36,"Bolsas de Regalo",0.4],[37,"Borra de Colores",0.4],[38,"Borra Pointer",0.3],[39,"Borrador de Pizarra",1.1],[40,"Caja Fuerte",20.0],[41,"Caja Lapiz Mongol",3.0],[42,"Caja Lapiz Pointer",1.5],[43,"Calculadora Cientifica",5.0],[44,"Calculadora Grande",5.35],[45,"Calculadora Mediana",3.0],[46,"Calculadora Pequeña",2.5],[47,"Carpeta 3 Aros Grande 1\"",3.5],[48,"Carpeta 3 Aros Pequeña ½\"",3],[49,"Carpeta de Acetato",5.0],[50,"Carpeta Manila Carta",0.13],[51,"Carpeta Manila de Colores",0.23],[52,"Carpeta Manila Oficio",19.0],[53,"Carpeta Marron Carta",0.23],[54,"Carpeta Marron Oficio",0.25],[55,"Carpeta Plastica con Liga",1.0],[56,"Cartilla ABC",0.39],[57,"Carton Kilo",1.5],[58,"Cartulina Corrugada",0.65],[59,"Cartulina de Color Carta",0.16],[60,"Cartulina Doble Faz",0.7],[61,"Cartulina Escarchada",0.88],[62,"Cartulina Escolar",0.37],[63,"Cartulina Fluorescente",0.35],[64,"Cartulina Hilo",0.1],[65,"Cartulina Metalizada",0.6],[66,"Cartulina Opalina",0.1],[67,"Celoven Pequeño",0.3],[68,"Chinches",0.9],[69,"Cinta Adhesiva Estampada",1.5],[70,"Cinta Adhesiva Invisible",2.0],[71,"Cinta de Embalar 80 MTS",0.7],[72,"Cinta Doble Faz",0.65],[73,"Cinta para Lazos",2.2],[74,"Clip Mariposa",0.15],[75,"Clip Mordaza 1\"",0.4],[76,"Clip Regular",1.0],[77,"Colores Plasticos 6 COL",1.0],[78,"Colores Pointer 12 COL",0.9],[79,"Colores Pointer 24 COL",2.2],[80,"Colores Prismacolor 12 COL",4.5],[81,"Colores Prismacolor 24 COL",9.0],[82,"Compas de Precision",1.3],[83,"Compas Sencillo",0.9],[84,"Corrector Lapiz",0.43],[85,"Creyones de Cera 12 Colores",1.0],[86,"Creyones de Cera 6 Colores",0.5],[87,"Cuaderno de Contabilidad",0.6],[88,"Cuaderno de Dibujo",0.51],[89,"Cuadernos",0.8],[90,"Cuenta Facil",3.0],[91,"Diccionario",2.08],[92,"Escalimetro",3.0],[93,"Escarcha de Pote",0.4],[94,"Escarcha de Sobre",0.15],[95,"Escuadras",1.0],[96,"Estambre",0.3],[97,"Estuche de Marcadores Yue Cai",1.3],[98,"Estuche de Plumillas Pointer",4.7],[99,"Estuche Lapiz Pointer Comfort Grip",2],[100,"Estuche Marcador Pointer",2.3],[101,"Estuche Marcadores Merletto",1.5],[102,"Estuche Marcadores Paper Mate Doble Punta",3.9],[103,"Estuche Marcadores Triangulares Pointer",3.6],[104,"Etiquetas Escolares",0.6],[105,"Exacto",0.5],[106,"Fichas",0.1],[107,"Fieltro Carta",0.2],[108,"Foami Carta",1.45],[109,"Foami Doble Carta",2.9],[110,"Foami Escarchado",2.0],[111,"Foami Metalizado",2.0],[112,"Foami Moldeable",1.56],[113,"Fundas Transparentes",4.0],[114,"Ganchos Dorados Imperdibles",1.5],[115,"Ganchos para Carpetas",3.0],[116,"Grapadora de Metal",8.0],[117,"Grapadora Mediana",4.0],[118,"Grapadora Pequeña",1.44],[119,"Grapas Corrugadas",2.5],[120,"Grapas Lisas 1000 Piezas",0.4],[121,"Grapas Lisas 5000 Piezas",1.31],[122,"Hilo Pabilo",0.6],[123,"Hojas de Colores",4.0],[124,"Hojas Ministro 50 UNID",1.9],[125,"Hojas Ponchadas",2.0],[126,"Juego Didactico de Foami",2.0],[127,"Juego Geometrico",1.7],[128,"Juguetes para Niños",4.0],[129,"Lamina de Anime",2.0],[130,"Laminas para Plastificado Carnet",3.95],[131,"Laminas para Plastificar Carta",10.0],[132,"Lapiz Bicolor",3.5],[133,"Lapiz de Dibujo",3.0],[134,"Lapiz Escolar",1.0],[135,"Libreta de Bolsillo con Espiral",0.45],[136,"Libreta de Bolsillo Estampada",3.0],[137,"Libreta Espiral Papper",1.0],[138,"Libretas",0.85],[139,"Libretas 6 Materias Cosidas",5.0],[140,"Libretas 6 Materias Espiral",4.0],[141,"Libro de Accionista",3.1],[142,"Libro de Acta",3.1],[143,"Libro de Contabilidad",3.1],[144,"Ligas para Billetes",0.32],[145,"Lupa",1.3],[146,"Marcador Acrilico",0.3],[147,"Marcador Crisvi Punta Fina",0.43],[148,"Marcador Doble Punta",0.36],[149,"Marcador Metalizado Pointer",1.04],[150,"Marcador para Billetes",1.0],[151,"Metodo Palmer",0.37],[152,"Mi Jardin",1.9],[153,"Minas",0.5],[154,"Monografo",4.0],[155,"Notas Adhesivas Tacos",0.7],[156,"Ojos Movibles",0.2],[157,"Paletas de Helado de Colores",0.45],[158,"Paletas de Helado Natural",0.39],[159,"Palitos de Altura (paquete)",2],[160,"Papel Bond",0.15],[161,"Papel Carbon",7.0],[162,"Papel Contac Transparente",1.2],[163,"Papel Crepe",2.3],[164,"Papel de Regalo Estampado",0.2],[165,"Papel de Seda",0.15],[166,"Papel Fotografico",4.0],[167,"Pasito A Pasito 2 y 3",4.2],[168,"Pega Blanca 120g",0.7],[169,"Pega Blanca 250 GR",1.3],[170,"Pega Blanca 500g",3.0],[171,"Pega Blanca 70g",0.58],[172,"Pega Loka",0.4],[173,"Pelotas de Anime",0.4],[174,"Perforador 2 Huecos",6.0],[175,"Perforador Individual",1.2],[176,"Pila AA",0.5],[177,"Pila AAA",0.54],[178,"Pinceles",0.2],[179,"Pintadedos",1.2],[180,"Pintura al Frio",0.48],[181,"Pistola de Silicon",3.0],[182,"Pizarra Acrilica",10.0],[183,"Pizarra de Corcho",18.0],[184,"Plastidedos",2.2],[185,"Plastilina 10 Colores",1.0],[186,"Plastilina 6 Colores",0.6],[187,"Porta Carnet",0.8],[188,"Portaminas de Colores Pointer",4.0],[189,"Resaltador Pointer",0.39],[190,"Resma Carta",5.5],[191,"Resma Hojas Continuas",25.0],[192,"Resma Oficio",8.0],[193,"Rollo de Impresora Fiscal",0.67],[194,"Rollo de Impresora Fiscal#75",0.67],[195,"Rollo de Punto",0.17],[196,"Rollo de Sumadora Bond",1.0],[197,"Rollos de Precios",2.0],[198,"Sacagrapas",1.3],[199,"Sacapunta con Deposito",0.6],[200,"Sacapunta de Metal",0.1],[201,"Separadores",0.8],[202,"Silicon Liquido 100ml",1.2],[203,"Silicon Liquido 250ml",2.3],[204,"Silicon Liquido 30ml",0.5],[205,"Sobre Blanco#11",0.06],[206,"Sobre Manila Carta",0.1],[207,"Sobre Manila Oficio",0.12],[208,"Sobre Plastico",1.5],[209,"Tabla de Chequeo",3.0],[210,"Tabla Periodica",1.0],[211,"Tachuelas",1.3],[212,"Tacos Blancos",1.5],[213,"Talonario de Factura Grande",0.8],[214,"Talonario de Factura Pequeño",0.4],[215,"Talonario de Recibo",1.0],[216,"Tempera",0.9],[217,"Tijera Pointer",2.0],[218,"Tinta para Sellos",0.7],[219,"Tirro",1.0],[220,"Tirro Grande",0.85],[221,"Tiza Blanca",0.35],[222,"Tiza de Colores",0.39]].map(([id, n, p]) => Object.freeze({ id, n, p })));
+const BY_ID = new Map(PRODUCTOS.map(p => [p.id, p]));
 
-  function handleWA(e) {
-    e.preventDefault();
+/* ════════════════════════════════════════════════════════
+   UTILIDADES
+   ════════════════════════════════════════════════════════ */
+const $ = (s, r = document) => r.querySelector(s);
+const money = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const push = (event, data) => { try { (window.dataLayer = window.dataLayer || []).push({ event, ...data }); } catch (e) {} };
+const track = (name, data) => { try { if (typeof fbq === 'function') fbq('trackCustom', name, data || {}); } catch (e) {} };
+const waURL = text => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+$('#yr').textContent = new Date().getFullYear();
 
-    const nombre = document.getElementById('nombre').value.trim();
-    const correo = document.getElementById('correo').value.trim();
-
-    if (!nombre) {
-      document.getElementById('nombre').focus();
-      document.getElementById('nombre').style.borderColor = 'rgba(255,80,80,0.7)';
-      setTimeout(() => document.getElementById('nombre').style.borderColor = '', 1800);
-      return;
-    }
-    if (!correo || !/\S+@\S+\.\S+/.test(correo)) {
-      document.getElementById('correo').focus();
-      document.getElementById('correo').style.borderColor = 'rgba(255,80,80,0.7)';
-      setTimeout(() => document.getElementById('correo').style.borderColor = '', 1800);
-      return;
-    }
-
-    // ─── Aquí puedes disparar tu Píxel de Facebook / Google Tag ───
-    // Ejemplo Meta Pixel:
-    // if (typeof fbq !== 'undefined') fbq('track', 'Lead', { name: nombre, email: correo });
-
-    // Opcional: enviar datos a tu backend / sheet
-    // fetch('/api/leads', { method: 'POST', body: JSON.stringify({ nombre, correo }) });
-
-    const extra = ` (${nombre} – ${correo})`;
-    window.open(buildWaURL(extra), '_blank');
-  }
-
-  function openWA(e) {
-    e.preventDefault();
-    window.open(buildWaURL(''), '_blank');
-  }
-
-  // Actualizar href del botón flotante
-  document.getElementById('floatingWa').href = buildWaURL('');
-
-  // Animación de entrada scroll
-  const cards = document.querySelectorAll('.benefit-card, .cta-card');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  cards.forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = `opacity 0.5s ${i * 0.1}s ease, transform 0.5s ${i * 0.1}s ease`;
-    observer.observe(el);
+/* ════════════════════════════════════════════════════════
+   VIDEO (con sonido) + SILUETAS DE CARGA
+   ════════════════════════════════════════════════════════ */
+const video = $('#avatar'), unmuteBtn = $('#unmute');
+function tryAudio() {
+  video.muted = false; video.volume = 1;
+  const p = video.play();
+  if (p && p.catch) p.then(() => { unmuteBtn.hidden = true; }).catch(() => {
+    // El navegador bloquea audio automático: arranca en silencio y pide un toque
+    video.muted = true; video.play().catch(() => {}); unmuteBtn.hidden = false;
   });
-</script>
-<!-- ================= SECCIÓN COTIZADOR B2B EDITABLE ================= -->
-<!-- ========================================== -->
-<!-- FORMULARIO CORPORATIVO PARA HTML2PDF.JS -->
-<!-- ========================================== -->
-<div class="cotizador-container">
-    <!-- Este bloque 'area-pdf' es lo que la librería convertirá en el archivo final -->
-    <div id="area-pdf" style="padding: 20px; background: white;">
-        <h2>PRESUPUESTO DE INSUMOS corporativos</h2>
-        <p style="font-size: 13px; color: #64748b;">
-            <strong>Fecha de Emisión:</strong> <span id="pdf-fecha"></span><br>
-            <strong>Validez de la oferta:</strong> 15 días continuos
-        </p>
+}
+unmuteBtn.addEventListener('click', () => { video.muted = false; video.volume = 1; video.currentTime = 0; video.play(); unmuteBtn.hidden = true; });
+video.addEventListener('volumechange', () => { if (!video.muted) unmuteBtn.hidden = true; });
+['pointerdown', 'keydown', 'touchstart'].forEach(ev =>
+  addEventListener(ev, () => { if (video.muted && !unmuteBtn.hidden) { video.muted = false; video.play().catch(() => {}); unmuteBtn.hidden = true; } }, { once: true, passive: true })
+);
+tryAudio();
 
-        <!-- Datos del Cliente ( Campos que llenará el usuario ) -->
-        <div class="cotizador-form-group">
-            <label for="client_name">Nombre de la Empresa / Cliente</label>
-            <input type="text" id="client_name" class="cotizador-input" placeholder="Ej. Inversiones Alfa C.A.">
-        </div>
-        <div class="cotizador-form-group">
-            <label for="client_rif">Identificación Fiscal (RIF / NIT / RUT)</label>
-            <input type="text" id="client_rif" class="cotizador-input" placeholder="Ej. J-12345678-9">
-        </div>
-        <div class="cotizador-form-group">
-            <label for="client_email">Correo Electrónico Corporativo</label>
-            <input type="email" id="client_email" class="cotizador-input" placeholder="compras@empresa.com">
-        </div>
+const videoReady = new Promise(r => {
+  if (video.readyState >= 2) return r();
+  ['loadeddata', 'error', 'stalled'].forEach(ev => video.addEventListener(ev, r, { once: true }));
+});
+Promise.race([
+  Promise.all([document.fonts ? document.fonts.ready : 0, videoReady]),
+  new Promise(r => setTimeout(r, 4500))
+]).then(() => { document.documentElement.classList.add('ready'); document.querySelectorAll('[data-sk]').forEach(el => el.classList.add('reveal')); });
 
-        <!-- Tabla de Suministros -->
-        <h3>Productos a Cotizar</h3>
-        <div id="productos-container">
-            <div class="cotizador-product-row">
-                <select class="producto-select" onchange="verificarStockYPrecio(this)">
-                    <option value="">-- Seleccione un producto --</option>
-                </select>
-                <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()">
-                <span class="cotizador-info-dinamica"></span>
-            </div>
-        </div>
-        
-        <button type="button" id="btn-añadir" class="cotizador-btn cotizador-btn-add" onclick="agregarFilaProducto()">+ Añadir otro producto</button>
+/* ════════════════════════════════════════════════════════
+   COTIZADOR
+   ════════════════════════════════════════════════════════ */
+const rowsEl = $('#qRows'), msgEl = $('#qMsg'), filterEl = $('#qFilter');
+let filterText = '';
 
-        <!-- Totales comerciales -->
-        <div class="cotizador-summary">
-            <p>Subtotal: <span id="lbl-subtotal">\$0.00</span></p>
-            <p>IVA (16%): <span id="lbl-iva">\$0.00</span></p>
-            <p class="cotizador-total">Total General: <span id="lbl-total">\$0.00</span></p>
-        </div>
-        
-        <p style="font-size: 11px; color: #94a3b8; margin-top: 15px; font-style: italic;">
-            * Los precios están sujetos a cambios según la variación de inventario físico en nuestros almacenes.
-        </p>
+const seqKey = 'isp_cotizacion_seq';
+function readSeq() { try { return parseInt(localStorage.getItem(seqKey) || '0', 10) || 0; } catch (e) { return 0; } }
+function saveSeq(n) { try { localStorage.setItem(seqKey, String(n)); } catch (e) {} }
+const fmtNo = n => EMPRESA.prefijo + String(n).padStart(6, '0');
+function refreshNumber() { $('#qNumber').textContent = fmtNo(readSeq() + 1); }
+
+function optionsHTML(selectedId) {
+  const q = filterText.trim().toLowerCase();
+  const list = PRODUCTOS.filter(p => !q || p.n.toLowerCase().includes(q) || p.id === selectedId);
+  $('#qCount').textContent = q ? `${list.length} coincidencias` : `${PRODUCTOS.length} productos disponibles`;
+  return '<option value="">— Selecciona un producto —</option>' +
+    list.map(p => `<option value="${p.id}"${p.id === selectedId ? ' selected' : ''}>${esc(p.n)} — ${money(p.p)}</option>`).join('');
+}
+
+function addRow(id = '', qty = 1) {
+  const row = document.createElement('div');
+  row.className = 'q-row';
+  row.innerHTML = `
+    <div class="field f-prod"><label>Producto</label><select class="r-sel" aria-label="Producto"></select></div>
+    <div class="field f-qty"><label>Cantidad</label>
+      <div class="stepper"><button type="button" class="r-minus" aria-label="Menos">−</button><input class="r-qty" type="number" min="1" max="99999" step="1" value="${qty}" inputmode="numeric" aria-label="Cantidad" /><button type="button" class="r-plus" aria-label="Más">+</button></div></div>
+    <div class="field f-unit"><label>Precio unit. 🔒</label><input class="r-unit" readonly tabindex="-1" value="—" aria-label="Precio unitario" /></div>
+    <div class="field f-sub"><label>Subtotal</label><input class="r-sub" readonly tabindex="-1" value="$0.00" aria-label="Subtotal" /></div>
+    <button type="button" class="rm" aria-label="Quitar producto" title="Quitar">×</button>`;
+  rowsEl.appendChild(row);
+  const sel = $('.r-sel', row);
+  sel.innerHTML = optionsHTML(id);
+  sel.addEventListener('change', recalc);
+  const qty$ = $('.r-qty', row);
+  qty$.addEventListener('input', recalc);
+  qty$.addEventListener('blur', () => { qty$.value = Math.max(1, parseInt(qty$.value, 10) || 1); recalc(); });
+  $('.r-minus', row).addEventListener('click', () => { qty$.value = Math.max(1, (parseInt(qty$.value, 10) || 1) - 1); recalc(); });
+  $('.r-plus',  row).addEventListener('click', () => { qty$.value = Math.min(99999, (parseInt(qty$.value, 10) || 0) + 1); recalc(); });
+  $('.rm', row).addEventListener('click', () => { row.remove(); if (!rowsEl.children.length) addRow(); recalc(); });
+  recalc();
+  return row;
+}
+
+// Lee las filas siempre desde el catálogo congelado (nunca desde el texto en pantalla)
+function readItems() {
+  const items = [];
+  rowsEl.querySelectorAll('.q-row').forEach(row => {
+    const p = BY_ID.get(parseInt($('.r-sel', row).value, 10));
+    const qty = Math.max(1, Math.min(99999, parseInt($('.r-qty', row).value, 10) || 0));
+    if (p && qty) items.push({ p, qty, sub: Math.round(p.p * qty * 100) / 100 });
+  });
+  return items;
+}
+
+function recalc() {
+  rowsEl.querySelectorAll('.q-row').forEach(row => {
+    const p = BY_ID.get(parseInt($('.r-sel', row).value, 10));
+    const qty = Math.max(0, parseInt($('.r-qty', row).value, 10) || 0);
+    $('.r-unit', row).value = p ? money(p.p) : '—';
+    $('.r-sub', row).value = p ? money(p.p * qty) : '$0.00';
+  });
+  const items = readItems();
+  const sub = items.reduce((a, i) => a + i.sub, 0);
+  const iva = Math.round(sub * IVA * 100) / 100;
+  $('#tSub').textContent = money(sub);
+  $('#tIva').textContent = money(iva);
+  $('#tTot').textContent = money(sub + iva);
+  $('#tRate').textContent = Math.round(IVA * 100);
+  return { items, sub, iva, total: sub + iva };
+}
+
+filterEl.addEventListener('input', () => {
+  filterText = filterEl.value;
+  rowsEl.querySelectorAll('.r-sel').forEach(sel => { const cur = parseInt(sel.value, 10) || ''; sel.innerHTML = optionsHTML(cur); });
+});
+$('#addRow').addEventListener('click', () => { addRow(); });
+$('#qForm').addEventListener('reset', () => { setTimeout(() => { rowsEl.innerHTML = ''; filterText = ''; addRow(); setMsg(''); }, 0); });
+
+function setMsg(t, ok) { msgEl.textContent = t; msgEl.classList.toggle('ok', !!ok); }
+
+function validate() {
+  const name = $('#cName');
+  name.classList.remove('invalid');
+  const mail = $('#cMail'); mail.classList.remove('invalid');
+  if (!name.value.trim()) { name.classList.add('invalid'); name.focus(); setMsg('Escribe el nombre del cliente o razón social.'); return null; }
+  if (mail.value.trim() && !/\S+@\S+\.\S+/.test(mail.value.trim())) { mail.classList.add('invalid'); mail.focus(); setMsg('El correo no tiene un formato válido.'); return null; }
+  const data = recalc();
+  if (!data.items.length) { setMsg('Selecciona al menos un producto de la lista.'); return null; }
+  setMsg('');
+  return data;
+}
+
+/* ───────── PDF ───────── */
+function buildSheet(no, data) {
+  const today = new Date();
+  const fecha = today.toLocaleDateString('es-VE', { day: '2-digit', month: 'long', year: 'numeric' });
+  const rif = EMPRESA.rif ? ` · RIF ${esc(EMPRESA.rif)}` : '';
+  const rows = data.items.map((i, k) => `
+    <tr><td class="c">${k + 1}</td><td>${esc(i.p.n)}</td><td class="c">${i.qty}</td><td class="r">${money(i.p.p)}</td><td class="r">${money(i.sub)}</td></tr>`).join('');
+  $('#pdf-sheet').innerHTML = `
+    <div class="pdf-head">
+      <div><img src="${LOGO_PDF}" alt="Papelería" /><div class="co">${esc(EMPRESA.nombre)}</div><div class="co-sub">${esc(EMPRESA.ciudad)}${rif}</div></div>
+      <div class="pdf-no"><div class="t">Cotización</div><div class="n">${no}</div><div class="co-sub">${fecha}</div></div>
     </div>
+    <div class="pdf-body">
+      <div class="pdf-meta">
+        <div><h5>Cliente</h5><strong>${esc($('#cName').value.trim())}</strong><br>
+          ${$('#cRif').value.trim() ? 'RIF/CI: ' + esc($('#cRif').value.trim()) + '<br>' : ''}
+          ${$('#cMail').value.trim() ? esc($('#cMail').value.trim()) + '<br>' : ''}
+          ${$('#cTel').value.trim() ? 'Tel: ' + esc($('#cTel').value.trim()) : ''}</div>
+        <div><h5>Condiciones</h5>Validez de la oferta: ${EMPRESA.validez}<br>Moneda: dólares (USD)<br>Contacto: ${esc(EMPRESA.tel)}</div>
+      </div>
+      <table>
+        <thead><tr><th class="c" style="width:2.5rem">#</th><th>Producto</th><th class="c" style="width:4.5rem">Cant.</th><th class="r" style="width:6rem">P. unit.</th><th class="r" style="width:6.5rem">Subtotal</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="pdf-totals">
+        <p><span>Subtotal</span><strong>${money(data.sub)}</strong></p>
+        <p><span>IVA (${Math.round(IVA * 100)}%)</span><strong>${money(data.iva)}</strong></p>
+        <p class="g"><span>Total</span><span>${money(data.total)}</span></p>
+      </div>
+      <div class="pdf-foot">Los precios están sujetos a cambios según la disponibilidad de inventario. Esta cotización no constituye reserva de mercancía. Delivery gratuito en Barquisimeto y Acarigua.</div>
+    </div>`;
+}
 
-    <br>
-    <!-- Este botón está fuera del área del PDF para que no salga impreso -->
-    <button class="cotizador-btn" onclick="descargarPresupuestoHTML()">Generar y Descargar Cotización (PDF)</button>
-</div>
+$('#qForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const data = validate(); if (!data) return;
+  if (typeof html2pdf === 'undefined') { setMsg('No se pudo cargar el generador de PDF. Revisa tu conexión e inténtalo de nuevo.'); return; }
+  const btn = $('#btnPdf'); btn.disabled = true; const label = btn.textContent; btn.textContent = 'Generando PDF…';
+  const seq = readSeq() + 1, no = fmtNo(seq);
+  try {
+    buildSheet(no, data);
+    const logo = $('#pdf-sheet img'); if (logo && !logo.complete) await new Promise(r => { logo.onload = logo.onerror = r; });
+    const safe = $('#cName').value.trim().replace(/[^\p{L}\p{N}]+/gu, '_').slice(0, 40);
+    await html2pdf().set({
+      margin: [0, 0, 10, 0],
+      filename: `Cotizacion_${no}_${safe}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', windowWidth: 794 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['css', 'legacy'], avoid: ['tr', '.pdf-totals', '.pdf-foot'] }
+    }).from($('#pdf-sheet')).save();
+    saveSeq(seq); refreshNumber();
+    setMsg(`Cotización ${no} descargada.`, true);
+    push('cotizacion_generada', { numero: no, total: data.total, items: data.items.length });
+    track('QuoteDownload', { value: data.total, currency: 'USD' });
+  } catch (err) {
+    console.error(err); setMsg('Ocurrió un error al generar el PDF. Inténtalo de nuevo.');
+  } finally { btn.disabled = false; btn.textContent = label; }
+});
 
-<script>
-    // ========================================================
-    //   TU INVENTARIO EN GITHUB (EDITA AQUÍ PRECIOS Y STOCK)
-    // ========================================================
-    const listaProductosDB = [
-        { id: 1, nombre: "Resma de Papel Carta Chamex", precio: 4.50, stock: 150 },
-        { id: 2, nombre: "Caja de Bolígrafos Negros (12und)", precio: 3.20, stock: 40 },
-        { id: 3, nombre: "Carpeta de Fibra con Gancho (Docena)", precio: 12.10, stock: 500 },
-        { id: 4, nombre: "Marcador Acrílico Azul Sharpie", precio: 1.50, stock: 80 }
-    ];
+$('#btnWa').addEventListener('click', () => {
+  const data = validate(); if (!data) return;
+  const lines = data.items.map(i => `• ${i.qty} x ${i.p.n} (${money(i.p.p)}) = ${money(i.sub)}`).join('\n');
+  const t = `Hola! Quiero cotizar:\n${lines}\n\nSubtotal: ${money(data.sub)}\nIVA: ${money(data.iva)}\nTotal: ${money(data.total)}\n\nCliente: ${$('#cName').value.trim()}${$('#cRif').value.trim() ? ' · ' + $('#cRif').value.trim() : ''}`;
+  push('cotizacion_whatsapp', { total: data.total });
+  window.open(waURL(t), '_blank', 'noopener');
+});
 
-    document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("pdf-fecha").textContent = new Date().toLocaleDateString();
-        llenarSelects();
-    });
+/* ════════════════════════════════════════════════════════
+   WHATSAPP · formulario de contacto + botón flotante
+   ════════════════════════════════════════════════════════ */
+$('#floatingWa').href = waURL(WA_MESSAGE);
+$('#floatingWa').target = '_blank'; $('#floatingWa').rel = 'noopener';
+$('#waBtn').addEventListener('click', e => {
+  e.preventDefault();
+  const n = $('#nombre'), c = $('#correo');
+  const bad = el => { el.focus(); el.style.borderColor = 'rgba(255,90,90,.9)'; setTimeout(() => el.style.borderColor = '', 1800); };
+  if (!n.value.trim()) return bad(n);
+  if (!/\S+@\S+\.\S+/.test(c.value.trim())) return bad(c);
+  // Meta Pixel / GTM: evento de lead
+  try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'contacto_whatsapp' }); } catch (err) {}
+  push('lead_whatsapp', {});
+  window.open(waURL(WA_MESSAGE + ` (${n.value.trim()} – ${c.value.trim()})`), '_blank', 'noopener');
+});
+document.querySelectorAll('[data-track="catalogo_abrir"]').forEach(a => a.addEventListener('click', () => push('catalogo_abierto', {})));
 
-    function llenarSelects() {
-        const selects = document.querySelectorAll('.producto-select');
-        selects.forEach(select => {
-            const valorActual = select.value;
-            select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
-            listaProductosDB.forEach(p => {
-                let opt = document.createElement('option');
-                opt.value = p.id;
-                opt.textContent = p.nombre;
-                if(p.id == valorActual) opt.selected = true;
-                select.appendChild(opt);
-            });
-        });
-    }
-
-    function agregarFilaProducto() {
-        const container = document.getElementById('productos-container');
-        const nuevaFila = document.createElement('div');
-        nuevaFila.className = 'cotizador-product-row';
-        nuevaFila.innerHTML = `
-            <select class="producto-select" onchange="verificarStockYPrecio(this)"></select>
-            <input type="number" class="producto-cantidad" min="1" value="1" onchange="calcularTotales()">
-            <span class="cotizador-info-dinamica"></span>
-        `;
-        container.appendChild(nuevaFila);
-        llenarSelects();
-    }
-
-    function verificarStockYPrecio(selectElement) {
-        const fila = selectElement.parentElement;
-        const cantidadInput = fila.querySelector('.producto-cantidad');
-        const infoSpan = fila.querySelector('.cotizador-info-dinamica');
-        
-        const productoId = selectElement.value;
-        const prodSelected = listaProductosDB.find(p => p.id == productoId);
-
-        if (prodSelected) {
-            infoSpan.textContent = `$${prodSelected.precio.toFixed(2)} c/u (Disponibles: ${prodSelected.stock})`;
-            cantidadInput.max = prodSelected.stock;
-            if (parseInt(cantidadInput.value) > prodSelected.stock) {
-                alert(`Inventario insuficiente. Solo quedan ${prodSelected.stock} unidades.`);
-                cantidadInput.value = prodSelected.stock;
-            }
-        } else {
-            infoSpan.textContent = "";
-        }
-        calcularTotales();
-    }
-
-    let subtotalGeneral = 0, ivaGeneral = 0, totalGeneral = 0;
-
-    function calcularTotales() {
-        subtotalGeneral = 0;
-        document.querySelectorAll('.cotizador-product-row').forEach(fila => {
-            const id = fila.querySelector('.producto-select').value;
-            const cant = parseInt(fila.querySelector('.producto-cantidad').value) || 0;
-            const prod = listaProductosDB.find(p => p.id == id);
-            if (prod) subtotalGeneral += (prod.precio * cant);
-        });
-
-        ivaGeneral = subtotalGeneral * 0.16; // IVA Venezuela 16%
-        totalGeneral = subtotalGeneral + ivaGeneral;
-
-        document.getElementById('lbl-subtotal').textContent = `$${subtotalGeneral.toFixed(2)}`;
-        document.getElementById('lbl-iva').textContent = `$${ivaGeneral.toFixed(2)}`;
-        document.getElementById('lbl-total').textContent = `$${totalGeneral.toFixed(2)}`;
-    }
-
-    // LÓGICA DE DESCARGA USANDO TU LIBRERÍA HTML2PDF.JS
-    function descargarPresupuestoHTML() {
-        const cliente = document.getElementById('client_name').value;
-        if (!cliente) {
-            alert("Por favor, ingrese el nombre del cliente corporativo.");
-            return;
-        }
-
-        // Ocultamos temporalmente el botón de añadir para que no salga en la 'foto' del PDF
-        document.getElementById('btn-añadir').style.display = 'none';
-
-        const elementoParaConvertir = document.getElementById('area-pdf');
-        
-        const opcionesConfig = {
-            margin:       10,
-            filename:     `Presupuesto_${cliente.replace(/\s+/g, '_')}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-
-        // Ejecuta la conversión directa
-        html2pdf().set(opcionesConfig).from(elementoParaConvertir).save().then(() => {
-            // Volvemos a mostrar el botón en la web una vez que el PDF se descargó
-            document.getElementById('btn-añadir').style.display = 'inline-block';
-        });
-    }
+/* Inicio */
+addRow();
+refreshNumber();
 </script>
 </body>
 </html>
+
+    
+
+  
